@@ -55,25 +55,11 @@
     function setExpansion () {
         let chosenExp = $("#exp-menu :selected").val();
         gallery.empty();
-        console.log(chosenExp);
         for (let c of collectibleCards) {
             if (c["set"] === chosenExp) {
                 gallery.append(`<img src="https://art.hearthstonejson.com/v1/render/latest/enUS/256x/${c["id"]}.png" alt="${c["name"]}" />`);
             }
         }
-        //console.log(chosenExp);
-    }
-
-    function buildExpGallery (id, exp) {
-        console.log(collectibleCards);
-        for (let c of collectibleCards) {
-            if (c["set"] === id) {
-                console.log(`card ${c["name"]} from set ${c["set"]}`);
-                //div += `<img src="https://art.hearthstonejson.com/v1/render/latest/enUS/256x/${c["id"]}.png" alt="${c["name"]}" />`;
-            }
-        }
-        //div += "</div>";
-        //$("#expansions").append(div);
     }
 
     function loadCards (cards) {
