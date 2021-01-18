@@ -6,8 +6,35 @@
     <title>Document</title>
 </head>
 <body>
+    <label for="expansions">Choose expansion:</label>
+
+    <select id="expansions" onchange="setExpansion()">
+
+    </select>
+
     <div id="expansions">
-        
+
     </div>
+
+    <!-- script section -->
+    <script src="js/jquery-3.5.1.min.js"></script>
+    <script src="js/urls.js"></script>
 </body>
 </html>
+<script>
+    let chosen_exp = "CLASSIC";
+
+    $.ajax({
+        dataType: "json",
+        url: URL_EXPANSIONS,
+        success: res => buildExpMenu(res)
+    })
+
+    function buildExpMenu (expansions) {
+        let expMenu = $("#expansions");
+        for (let e in expansions) {
+            expMenu.append(`<option value="${e}">${expansions[e]["name"]}</option>`);
+        }
+    }
+
+</script>
