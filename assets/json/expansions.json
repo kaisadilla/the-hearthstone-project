@@ -1,7 +1,7 @@
 {
     "CORE":                  {"symbol": "Basic",     "name": "Basic"},
     "EXPERT1":               {"symbol": "Classic",   "name": "Classic"},
-    "HOF":                   {"symbol": "MSoG",      "name": "Mean Street of Gadgetzan"},
+    "HOF":                   {"symbol": "MSoG",      "name": "Hall of Fame"},
     "DEMON_HUNTER_INITIATE": {"symbol": "Initiate",  "name": "Demon Hunter's Initiate"},
     "GVG":                   {"symbol": "GvG",       "name": "Goblins vs Gnomes"},
     "BRM":                   {"symbol": "BRM",       "name": "Blackrock Mountain"},

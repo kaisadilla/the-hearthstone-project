@@ -5,24 +5,39 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 </head>
+<style>
+    .hidden {
+        display: none;
+    }
+</style>
 <body>
-    <label for="expansions">Choose expansion:</label>
+    <label for="exp-menu">Choose expansion:</label>
 
-    <select id="expansions" onchange="setExpansion()">
+    <select id="exp-menu" onchange="setExpansion()">
 
     </select>
 
-    <div id="expansions">
+    <div id="exp-gallery">
 
     </div>
 
     <!-- script section -->
     <script src="js/jquery-3.5.1.min.js"></script>
     <script src="js/urls.js"></script>
+    <script src="js/data.js"></script>
 </body>
 </html>
 <script>
+    let gallery = $("#exp-gallery");
+    
     let chosen_exp = "CLASSIC";
+    let collectibleCards;
+
+    $.ajax({
+        dataType: "json",
+        url: URL_CARD_COLLECTIBLE,
+        success: res => loadCards(res)
+    })
 
     $.ajax({
         dataType: "json",
@@ -31,10 +46,38 @@
     })
 
     function buildExpMenu (expansions) {
-        let expMenu = $("#expansions");
+        let expMenu = $("#exp-menu");
         for (let e in expansions) {
             expMenu.append(`<option value="${e}">${expansions[e]["name"]}</option>`);
         }
+    }
+
+    function setExpansion () {
+        let chosenExp = $("#exp-menu :selected").val();
+        gallery.empty();
+        console.log(chosenExp);
+        for (let c of collectibleCards) {
+            if (c["set"] === chosenExp) {
+                gallery.append(`<img src="https://art.hearthstonejson.com/v1/render/latest/enUS/256x/${c["id"]}.png" alt="${c["name"]}" />`);
+            }
+        }
+        //console.log(chosenExp);
+    }
+
+    function buildExpGallery (id, exp) {
+        console.log(collectibleCards);
+        for (let c of collectibleCards) {
+            if (c["set"] === id) {
+                console.log(`card ${c["name"]} from set ${c["set"]}`);
+                //div += `<img src="https://art.hearthstonejson.com/v1/render/latest/enUS/256x/${c["id"]}.png" alt="${c["name"]}" />`;
+            }
+        }
+        //div += "</div>";
+        //$("#expansions").append(div);
+    }
+
+    function loadCards (cards) {
+        collectibleCards = cards;
     }
 
 </script>
