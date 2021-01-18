@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <table>
+        <tbody id="json-data">
+            <tr>
+                <th>#</th>
+                <th>Cost</th>
+                <th>Name</th>
+                <th>Class</th>
+                <th>Rarity</th>
+                <th>Set</th>
+                <th>Description</th>
+            </tr>
+        </tbody>
+    </table>
+
+    <!-- script section -->
+    <script src="js/jquery-3.5.1.min.js"></script>
+    <script src="assets/cards.collectible.js"></script>
+</body>
+</html>
+<script>
+    $.ajax({
+        dataType: "json",
+        url: "https://api.hearthstonejson.com/v1/70986/enUS/cards.collectible.json",
+        success: res => printCards(res)
+    })
+
+    function printCards (data) {
+        let table = $("#json-data");
+        let count = 1;
+
+        console.log(data[50]);
+
+        for (let c of data) {
+            table.append(`
+                <tr>
+                    <td>${count++}</td>
+                    <td>${c.cost}</td>
+                    <td>${c.name}</td>
+                    <td>${c.cardClass}</td>
+                    <td>${c.rarity}</td>
+                    <td>${c.set}</td>
+                    <td>${c.text}</td>
+                </tr>
+            `);
+        }
+    }
+
+    // discarded:
+    /*let cards = JSON.parse(jsonCardsCollectible);
+    let table = $("#json-data");
+    let count = 1;
+    for (let c of cards) {
+        table.append(`
+            <tr>
+                <td>${count++}</td>
+                <td>${c.cost}</td>
+                <td>${c.name}</td>
+                <td>${c.cardClass}</td>
+                <td>${c.rarity}</td>
+                <td>${c.set}</td>
+                <td>${c.text}</td>
+            </tr>
+        `);
+    }*/
+    /*$(document).ready(() => {
+        $.getJSON("https://api.hearthstonejson.com/v1/70986/enUS/cards.json", () => {
+            
+        })
+    });*/
+</script>
