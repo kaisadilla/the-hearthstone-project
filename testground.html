@@ -19,6 +19,11 @@
             </tr>
         </tbody>
     </table>
+    <table>
+        <tbody id="card-image">
+
+        </tbody>
+    </table>
 
     <!-- script section -->
     <script src="js/jquery-3.5.1.min.js"></script>
@@ -28,12 +33,14 @@
 <script>
     $.ajax({
         dataType: "json",
-        url: "https://api.hearthstonejson.com/v1/70986/enUS/cards.collectible.json",
+        //url: "https://api.hearthstonejson.com/v1/70986/enUS/cards.collectible.json",
+        url: "https://raw.githubusercontent.com/kaisadilla/the-hearthstone-project/main/assets/json/cards.collectible.json",
         success: res => printCards(res)
     })
 
     function printCards (data) {
         let table = $("#json-data");
+        let image = $("#card-image");
         let count = 1;
 
         console.log(data[50]);
@@ -43,13 +50,22 @@
                 <tr>
                     <td>${count++}</td>
                     <td>${c.cost}</td>
-                    <td>${c.name}</td>
+                    <td style="
+                        background-image: url('https://art.hearthstonejson.com/v1/tiles/${c.id}.jpg');
+                        width: 200px;
+                        height: 50px;
+                        ">${c.name}</td>
                     <td>${c.cardClass}</td>
                     <td>${c.rarity}</td>
                     <td>${c.set}</td>
                     <td>${c.text}</td>
                 </tr>
             `);
+            /*image.append(`
+                <tr>
+                    <td><img src="https://art.hearthstonejson.com/v1/render/latest/enUS/256x/${c.id}.png" /></td>
+                </tr>
+            `);*/
         }
     }
 
