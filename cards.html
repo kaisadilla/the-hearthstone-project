@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cards – the Hearthstone project</title>
+    <!-- styles -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="css/styles.css" rel="stylesheet">
+</head>
+<body>
+    <header>
+        <span class="proj-title">the Hearthstone project</span>
+        <span class="tool">My decks</span>
+        <span class="tool">My cards</span>
+    </header>
+    <aside class="collection-tools">
+        <span class="title">Cards</span>
+        <span class="section">Display</span>
+        <span class="option" onclick="exist()">List</span>
+        <span class="option">Gallery</span>
+        <span class="section">Classes</span> <!-- show transparent class icon for disabled, full icon for enabled -->
+        <div class="class-buttons">
+            <img class="class-button" src="img/class-demonhunter.png" alt="demon_hunter" />
+            <img class="class-button" src="img/class-druid.png" alt="druid" />
+            <img class="class-button" src="img/class-hunter.png" alt="hunter" />
+            <img class="class-button" src="img/class-mage.png" alt="mage" />
+            <img class="class-button" src="img/class-paladin.png" alt="paladin" />
+            <img class="class-button" src="img/class-priest.png" alt="priest" />
+            <img class="class-button" src="img/class-rogue.png" alt="rogue" />
+            <img class="class-button" src="img/class-shaman.png" alt="shaman" />
+            <img class="class-button" src="img/class-warlock.png" alt="warlock" />
+            <img class="class-button" src="img/class-warrior.png" alt="warrior" />
+            <img class="class-button" src="img/class-neutral.png" alt="neutral" />
+        </div>
+        <span class="section">Cost</span>
+        <div class="cost-buttons">
+            <div class="mana-crystal">0</div>
+            <div class="mana-crystal">1</div>
+            <div class="mana-crystal">2</div>
+            <div class="mana-crystal">3</div>
+            <div class="mana-crystal">4</div>
+            <div class="mana-crystal">5</div>
+            <div class="mana-crystal">6</div>
+            <div class="mana-crystal">7</div>
+            <div class="mana-crystal">8</div>
+            <div class="mana-crystal">9</div>
+            <div class="mana-crystal">10</div>
+        </div>
+        <span class="section">Rarity</span>
+        <span class="option">Common</span>
+        <span class="option">Rare</span>
+        <span class="option">Epic</span>
+        <span class="option">Legendary</span>
+        <span class="section">Type</span>
+        <span class="option">Minion</span>
+        <span class="option">Spell</span>
+        <span class="option">Weapon</span>
+        <span class="option">Hero</span>
+        <span class="section">Tribe</span>
+        <span class="option">Beast</span>
+        <span class="option">Demon</span>
+        <span class="option">Dragon</span>
+        <span class="option">Elemental</span>
+        <span class="option">Mech</span>
+        <span class="option">Murloc</span>
+        <span class="option">Pirate</span>
+        <span class="option">Totem</span>
+    </aside>
+    <main>
+        <div class="card-filters">
+            <div class="search-card">
+                <input type="text" placeholder="Search: Arcane Intellect…" />
+                <span class="material-icons">search</span>
+            </div>
+            <div class="filter-exp">
+                <select onchange="setExpansion()">
+                    <option value="nenene">Nenene</option>
+                    <option value="nenene">Nenene</option>
+                    <option value="nenene">Nenene</option>
+                    <option value="nenene">Nenene</option>
+                </select>
+            </div>
+        </div>
+        
+    </main>
+</body>
+</html>

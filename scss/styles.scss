@@ -1,0 +1,223 @@
+/******  PRIMARY COLOR  ******/
+$primary-color: #492609;
+$primary-color-light1: #694429;
+$primary-color-light2: #8a6449;
+$primary-color-light3: #ac856c;
+$primary-color-light4: #cfa890;
+$primary-color-light5: #f2cdb6;
+$primary-color-dark1: #341409;
+$primary-color-dark2: #1e0000;
+/******  SECONDARY COLOR  ******/
+$secondary-color: #ffb00d;
+$secondary-color-light1: #facd5f;
+$secondary-color-light2: #fada7e;
+$secondary-color-light3: #fae69d;
+$secondary-color-light4: #fffbdb;
+$secondary-color-dark1: #e18921;
+$secondary-color-dark2: #bd6628;
+$secondary-color-dark3: #954727;
+$secondary-color-dark4: #6a2e22;
+$secondary-color-text: #3f1811;
+/******  BACKGROUND COLORS  ******/
+$background-color-bright: #e0e0e0;
+/******  TEXT COLORS  ******/
+$text-color-bright: #e0e0e0;
+$text-color-dark: #1f1f1f;
+
+$font-std: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+$font-hearthstone: "Belwe Std Bold", sans-serif;
+
+$light: 200;
+$regular: 400;
+$semibold: 600;
+$bold: 700;
+$black: 800;
+
+@mixin background-size ($bg-size) {
+    -webkit-background-size: $bg-size;
+    -moz-background-size: $bg-size;
+    -o-background-size: $bg-size;
+    background-size: $bg-size;
+}
+
+@mixin control-style ($style) {
+    -webkit-appearance: $style;
+    -moz-appearance: $style;
+    appearance: $style;
+}
+
+@font-face {
+    font-family: "Belwe Std Bold";
+    src: url("../fonts/belwe-std-bold.otf") format("opentype");
+}
+
+:root {
+    font-family: $font-std;
+}
+
+body {
+    background-color: $background-color-bright;
+    color: $text-color-dark
+}
+
+header {
+    position: fixed;
+    top: 0;
+    right: 0;
+    background: $primary-color;
+    width: 100%;
+    height: 50px;
+    padding-right: 100px;
+    color: $secondary-color-light4;
+
+    .proj-title {
+        float: left;
+        font-weight: $semibold;
+        font-size: 18pt;
+        line-height: 35pt;
+        padding-left: 130px;
+    }
+
+    .tool {
+        float: right;
+        font-weight: $semibold;
+        padding-right: 20px;
+        line-height: 35pt;
+    }
+}
+
+.collection-tools {
+    background-color: $secondary-color;
+
+    position: fixed;
+    z-index: 1;
+    top: 1;
+    left: 0;
+    overflow-x: hidden;
+
+    height: calc(100% - 50px);
+    width: 300px;
+    /* hide scrollbar */
+    scrollbar-width: thin;
+    &::-webkit-scrollbar { 
+        display: none; 
+    }
+
+    span {
+        display: block;
+        width: 100%;
+
+        &.title {
+            font-size: 14pt;
+            font-weight: $semibold;
+            text-align: center;
+            text-transform: uppercase;
+            height: 40px;
+            padding-top: 15px;
+        }
+
+        &.section {
+            background-color: $secondary-color-dark1;
+            //padding-left: 10px;
+            padding: 3px 0 3px 10px;
+            text-transform: uppercase;
+            font-weight: $semibold;
+            color: $secondary-color-text;
+        }
+
+        &.option {
+            padding: 5px 0 5px 20px;
+
+            &:not(:last-child) {
+                border-bottom: 1px solid $secondary-color-dark1;
+            }
+        }
+        &.option:hover {
+            cursor: pointer;
+            background-color: $secondary-color-light1;
+        }
+    }
+
+    .class-buttons, .cost-buttons {
+        text-align: center;
+        margin: 10px 30px 10px 30px;
+    }
+}
+
+main {
+    margin-left: 300px;
+    margin-top: 50px;
+}
+
+.class-button {
+    width: 32px;
+}
+
+.mana-crystal {
+    display: inline-block;
+    background-image: url("../img/mana-crystal.png");
+    width: 32px;
+    height: 32px;
+    font-family: $font-hearthstone;
+    font-size: 16pt;
+    text-align: center;
+    vertical-align: middle;
+    line-height: 30px;
+    @include background-size(cover);
+    color: white;
+    text-shadow: -1px -1px 0 black,
+                  1px -1px 0 black,
+                 -1px  1px 0 black,
+                  1px  1px 0 black;
+}
+
+main {
+    padding: 10px;
+}
+
+.search-card {
+    $search-width: 500px;
+    $padding-left: 35px;
+
+    width: $search-width;
+    position: relative;
+    display: inline-block;
+
+    > input {
+        background-color: transparent;
+        border: none;
+        border-bottom: 2px solid $primary-color;
+        font-size: 11pt;
+        padding: 7px 0px 7px $padding-left;
+        width: $search-width - $padding-left;
+    }
+
+    > span {
+        color: $primary-color;
+        position: absolute;
+        top: 0;
+        left: 0;
+        z-index: 2;
+        display: block;
+        width: 34px;
+        height: 34px;
+        line-height: 34px;
+        text-align: center;
+        pointer-events: none;
+    }
+}
+
+.filter-exp {
+    display: inline-block;
+
+    > select {
+        width: 250px;
+        background-color: transparent;
+        font-weight: $semibold;
+        color: $primary-color;
+        border: 1px solid $primary-color;
+        border-radius: 5px;
+        padding: 7px 0px 7px 5px;
+        //@include control-style(none);
+    }
+}
