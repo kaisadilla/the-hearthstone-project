@@ -17,8 +17,8 @@
     <aside class="collection-tools">
         <span class="title">Cards</span>
         <span class="section">Display</span>
-        <span class="option" onclick="exist()">List</span>
-        <span class="option">Gallery</span>
+        <span id="set-display-list" class="option chosen" onclick="setDisplay('list')">List</span>
+        <span id="set-display-gallery" class="option" onclick="setDisplay('gallery')">Gallery</span>
         <span class="section">Classes</span> <!-- show transparent class icon for disabled, full icon for enabled -->
         <div class="class-buttons">
             <img class="class-button" src="img/class-demonhunter.png" alt="demon_hunter" />
@@ -70,19 +70,54 @@
     <main>
         <div class="card-filters">
             <div class="search-card">
-                <input type="text" placeholder="Search: Arcane Intellect…" />
+                <input type="text" id="search-query" placeholder="Search: Arcane Intellect…" oninput="filterCardsByName()"/>
                 <span class="material-icons">search</span>
             </div>
             <div class="filter-exp">
-                <select onchange="setExpansion()">
-                    <option value="nenene">Nenene</option>
-                    <option value="nenene">Nenene</option>
-                    <option value="nenene">Nenene</option>
-                    <option value="nenene">Nenene</option>
+                <select id="exp-menu" onchange="displayExpansion()">
+                    
                 </select>
             </div>
         </div>
-        
+        <div class="card-container-gallery hidden" id="card-gallery">
+        </div>
+        <div class="card-container-list" id="card-list">
+        </div>
     </main>
+
+    <!-- script section -->
+    <script src="js/jquery-3.5.1.min.js"></script>
+    <script src="js/urls.js"></script>
+    <script src="js/html-cards.js"></script>
+    <script>
+        writeCollectibleCards();
+        buildExpMenu();
+    </script>
 </body>
 </html>
+
+<!-- discard
+
+            <div class="card-token">
+                <div class="card-cost">5</div>
+                <div class="card-name">
+                    <img class="tile" src="https://art.hearthstonejson.com/v1/tiles/AT_001.png" />
+                    <span class="tile-fade-out"></span>
+                    <span class="caption">Scavenger's Ingenuity</span>
+                </div>
+                <div class="card-stats">
+                    <div class="card-atk">12</div>
+                    <div class="card-hp">12</div>
+                </div>
+                <span class="card-exp">TGT</span>
+                <div class="card-class">
+                    <img class="class-button class-icon" src="img/class-mage.png" alt="mage" />
+                    <span class="class-label">Mage</span>
+                </div>
+                <div class="card-desc">
+                    <span>This is a very long description that will fill up all the space and will need to be cropped or else we riot I guess.</span>
+                </div>
+            </div>
+
+
+-->

@@ -18,11 +18,25 @@ $secondary-color-dark2: #bd6628;
 $secondary-color-dark3: #954727;
 $secondary-color-dark4: #6a2e22;
 $secondary-color-text: #3f1811;
+/******  GRAY  ******/
+$gray1: #c3c3c3;
+$gray2: #a5a5a5;
+$gray3: #878787;
+$gray4: #787878;
+$gray5: #5a5a5a;
+$gray6: #3c3c3c;
 /******  BACKGROUND COLORS  ******/
-$background-color-bright: #e0e0e0;
+$background-color-bright: #e1e1e1;
+$background-color-bright2: #eaeaea;
 /******  TEXT COLORS  ******/
-$text-color-bright: #e0e0e0;
-$text-color-dark: #1f1f1f;
+$text-color-bright: #e1e1e1;
+$text-color-dark: #1e1e1e;
+/******  SPECIAL COLORS  ******/
+$rarity-basic: #247222;
+$rarity-common: #858585;
+$rarity-rare: #286097;
+$rarity-epic: #674196;
+$rarity-legendary: #99631d;
 
 $font-std: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 $font-hearthstone: "Belwe Std Bold", sans-serif;
@@ -44,6 +58,26 @@ $black: 800;
     -webkit-appearance: $style;
     -moz-appearance: $style;
     appearance: $style;
+}
+
+/* renders the text of this element as mana (Belwe Std Bold font, white color with black outline) */
+@mixin manafy () {
+    font-family: $font-hearthstone;
+    color: white;
+    text-shadow: -1px -1px 0 black,
+                  1px -1px 0 black,
+                 -1px  1px 0 black,
+                  1px  1px 0 black;
+}
+
+/* renders the text as white with a black outline */
+@mixin cardfy () {
+    font-weight: $semibold;
+    color: white;
+    text-shadow: -1px -1px 0 black,
+                  1px -1px 0 black,
+                 -1px  1px 0 black,
+                  1px  1px 0 black;
 }
 
 @font-face {
@@ -69,6 +103,7 @@ header {
     height: 50px;
     padding-right: 100px;
     color: $secondary-color-light4;
+    z-index: 10;
 
     .proj-title {
         float: left;
@@ -131,6 +166,15 @@ header {
             &:not(:last-child) {
                 border-bottom: 1px solid $secondary-color-dark1;
             }
+
+            &.chosen {
+                background-color: $primary-color;
+                color: $text-color-bright;
+
+                &:hover {
+                    background-color: $primary-color-light1;
+                }
+            }
         }
         &.option:hover {
             cursor: pointer;
@@ -158,17 +202,12 @@ main {
     background-image: url("../img/mana-crystal.png");
     width: 32px;
     height: 32px;
-    font-family: $font-hearthstone;
     font-size: 16pt;
     text-align: center;
     vertical-align: middle;
     line-height: 30px;
     @include background-size(cover);
-    color: white;
-    text-shadow: -1px -1px 0 black,
-                  1px -1px 0 black,
-                 -1px  1px 0 black,
-                  1px  1px 0 black;
+    @include manafy();
 }
 
 main {
@@ -220,4 +259,157 @@ main {
         padding: 7px 0px 7px 5px;
         //@include control-style(none);
     }
+}
+
+.card-container-gallery, .card-container-list {
+    margin: 20px 5px 20px 0px;
+}
+
+.card-showcase {
+    width: 180px;
+    height: 240px;
+    object-fit: cover;
+    object-position: 0% 30%;
+}
+
+.card-token {
+    $width-cost: 32px;
+    $width-name: 200px;
+    $width-exp: 128px;
+    $width-class: 128px + 32px;
+    $width-stats: 66px;
+    $height: 32px; // does not include borders.
+
+    @mixin normalize-cell-text () {
+        line-height: $height - 1;
+        text-align: center;
+        font-weight: $semibold;
+    }
+
+    display: flex;
+    height: $height + 1;
+
+    &:nth-child(even) {
+        background-color: $background-color-bright2;
+    }
+
+    .card-cost {
+        //display: inline-block;
+        width: $width-cost;
+        height: $height;
+        font-size: 16pt;
+        text-align: center;
+        line-height: 31px;
+        @include manafy();
+        border: 1px solid black;
+        &.rarity-free      { background-color: $rarity-basic;    }
+        &.rarity-common    { background-color: $rarity-common;    }
+        &.rarity-rare      { background-color: $rarity-rare;      }
+        &.rarity-epic      { background-color: $rarity-epic;      }
+        &.rarity-legendary { background-color: $rarity-legendary; }
+    }
+    .card-name {
+        //display: inline-block;
+        height: $height;
+        width: $width-name;
+        border-top: 1px solid black;
+        border-right: 1px solid black;
+        border-bottom: 1px solid black;
+        .tile {
+            display: block;
+            position: absolute;
+            height: inherit;
+            width: inherit;
+            object-fit: cover;
+            //background-color: #333;
+        }
+        .tile-fade-out {
+            $threshold: 35%; // the start of the transition from color to image.
+            $spread: 35%; // the extent of the transition. 0% will produce a hard border.
+
+            position: absolute;
+            width: 200px;
+            height: $height;
+            background: linear-gradient(120deg, #333, #333 $threshold, transparent $threshold + $spread, transparent);
+        }
+        .caption {
+            display: block;
+            position: absolute;
+            height: inherit;
+            width: inherit;
+            @include cardfy();
+            line-height: $height - 1;
+            padding-left: 10px;
+        }
+    }
+    .card-stats {
+        display: flex;
+        height: 32px;
+        width: $width-stats;
+        .card-atk, .card-hp, .card-void {
+            width: 32px;
+            height: 32px;
+            @include manafy();
+            line-height: $height - 1;
+            text-align: center;
+            font-size: 16pt;
+            border-top: 1px solid black;
+            border-right: 1px solid black;
+            border-bottom: 1px solid black;
+        }
+        .card-atk {
+            background-color: #ffbb00;
+        }
+        .card-hp {
+            background-color: #a71300;
+        }
+        .card-void {
+            background-color: transparent;
+        }
+    }
+    .card-exp {
+        height: $height + 1;
+        width: $width-exp;
+        border-right: 1px solid $gray1;
+        border-bottom: 1px solid $gray1;
+        @include normalize-cell-text();
+    }
+    .card-class {
+        height: $height + 1;
+        width: $width-class;
+        border-right: 1px solid $gray1;
+        border-bottom: 1px solid $gray1;
+
+        .class-icon {
+            float: left;
+        }
+        .class-label {
+            display: inline-block;
+            height: $height + 1;
+            width: 128px;
+            @include normalize-cell-text();
+        }
+    }
+    .card-desc {
+        height: $height + 1;
+        padding-left: 12px;
+        width: calc(100% - #{$width-cost} - #{$width-name} - #{$width-exp} - #{$width-class} - #{$width-stats} - 24px);
+        line-height: $height - 1;
+        border-bottom: 1px solid $gray1;
+
+        span {
+            display: inline-block;
+            width: 100%;
+            overflow: hidden;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+        }
+    }
+}
+
+/********************************************
+ * CLASSES THAT MUST OVERRIDE ANYTHING ELSE *
+ ********************************************/
+.hidden {
+    display: none !important;
 }

@@ -1,7 +1,11 @@
 /******  PRIMARY COLOR  ******/
 /******  SECONDARY COLOR  ******/
+/******  GRAY  ******/
 /******  BACKGROUND COLORS  ******/
 /******  TEXT COLORS  ******/
+/******  SPECIAL COLORS  ******/
+/* renders the text of this element as mana (Belwe Std Bold font, white color with black outline) */
+/* renders the text as white with a black outline */
 @font-face {
   font-family: "Belwe Std Bold";
   src: url("../fonts/belwe-std-bold.otf") format("opentype");
@@ -11,8 +15,8 @@
 }
 
 body {
-  background-color: #e0e0e0;
-  color: #1f1f1f;
+  background-color: #e1e1e1;
+  color: #1e1e1e;
 }
 
 header {
@@ -24,6 +28,7 @@ header {
   height: 50px;
   padding-right: 100px;
   color: #fffbdb;
+  z-index: 10;
 }
 header .proj-title {
   float: left;
@@ -79,6 +84,13 @@ header .tool {
 .collection-tools span.option:not(:last-child) {
   border-bottom: 1px solid #e18921;
 }
+.collection-tools span.option.chosen {
+  background-color: #492609;
+  color: #e1e1e1;
+}
+.collection-tools span.option.chosen:hover {
+  background-color: #694429;
+}
 .collection-tools span.option:hover {
   cursor: pointer;
   background-color: #facd5f;
@@ -102,7 +114,6 @@ main {
   background-image: url("../img/mana-crystal.png");
   width: 32px;
   height: 32px;
-  font-family: "Belwe Std Bold", sans-serif;
   font-size: 16pt;
   text-align: center;
   vertical-align: middle;
@@ -111,6 +122,7 @@ main {
   -moz-background-size: cover;
   -o-background-size: cover;
   background-size: cover;
+  font-family: "Belwe Std Bold", sans-serif;
   color: white;
   text-shadow: -1px -1px 0 black, 1px -1px 0 black, -1px 1px 0 black, 1px 1px 0 black;
 }
@@ -157,6 +169,156 @@ main {
   border: 1px solid #492609;
   border-radius: 5px;
   padding: 7px 0px 7px 5px;
+}
+
+.card-container-gallery, .card-container-list {
+  margin: 20px 5px 20px 0px;
+}
+
+.card-showcase {
+  width: 180px;
+  height: 240px;
+  object-fit: cover;
+  object-position: 0% 30%;
+}
+
+.card-token {
+  display: flex;
+  height: 33px;
+}
+.card-token:nth-child(even) {
+  background-color: #eaeaea;
+}
+.card-token .card-cost {
+  width: 32px;
+  height: 32px;
+  font-size: 16pt;
+  text-align: center;
+  line-height: 31px;
+  font-family: "Belwe Std Bold", sans-serif;
+  color: white;
+  text-shadow: -1px -1px 0 black, 1px -1px 0 black, -1px 1px 0 black, 1px 1px 0 black;
+  border: 1px solid black;
+}
+.card-token .card-cost.rarity-free {
+  background-color: #247222;
+}
+.card-token .card-cost.rarity-common {
+  background-color: #858585;
+}
+.card-token .card-cost.rarity-rare {
+  background-color: #286097;
+}
+.card-token .card-cost.rarity-epic {
+  background-color: #674196;
+}
+.card-token .card-cost.rarity-legendary {
+  background-color: #99631d;
+}
+.card-token .card-name {
+  height: 32px;
+  width: 200px;
+  border-top: 1px solid black;
+  border-right: 1px solid black;
+  border-bottom: 1px solid black;
+}
+.card-token .card-name .tile {
+  display: block;
+  position: absolute;
+  height: inherit;
+  width: inherit;
+  object-fit: cover;
+}
+.card-token .card-name .tile-fade-out {
+  position: absolute;
+  width: 200px;
+  height: 32px;
+  background: linear-gradient(120deg, #333, #333 35%, transparent 70%, transparent);
+}
+.card-token .card-name .caption {
+  display: block;
+  position: absolute;
+  height: inherit;
+  width: inherit;
+  font-weight: 600;
+  color: white;
+  text-shadow: -1px -1px 0 black, 1px -1px 0 black, -1px 1px 0 black, 1px 1px 0 black;
+  line-height: 31px;
+  padding-left: 10px;
+}
+.card-token .card-stats {
+  display: flex;
+  height: 32px;
+  width: 66px;
+}
+.card-token .card-stats .card-atk, .card-token .card-stats .card-hp, .card-token .card-stats .card-void {
+  width: 32px;
+  height: 32px;
+  font-family: "Belwe Std Bold", sans-serif;
+  color: white;
+  text-shadow: -1px -1px 0 black, 1px -1px 0 black, -1px 1px 0 black, 1px 1px 0 black;
+  line-height: 31px;
+  text-align: center;
+  font-size: 16pt;
+  border-top: 1px solid black;
+  border-right: 1px solid black;
+  border-bottom: 1px solid black;
+}
+.card-token .card-stats .card-atk {
+  background-color: #ffbb00;
+}
+.card-token .card-stats .card-hp {
+  background-color: #a71300;
+}
+.card-token .card-stats .card-void {
+  background-color: transparent;
+}
+.card-token .card-exp {
+  height: 33px;
+  width: 128px;
+  border-right: 1px solid #c3c3c3;
+  border-bottom: 1px solid #c3c3c3;
+  line-height: 31px;
+  text-align: center;
+  font-weight: 600;
+}
+.card-token .card-class {
+  height: 33px;
+  width: 160px;
+  border-right: 1px solid #c3c3c3;
+  border-bottom: 1px solid #c3c3c3;
+}
+.card-token .card-class .class-icon {
+  float: left;
+}
+.card-token .card-class .class-label {
+  display: inline-block;
+  height: 33px;
+  width: 128px;
+  line-height: 31px;
+  text-align: center;
+  font-weight: 600;
+}
+.card-token .card-desc {
+  height: 33px;
+  padding-left: 12px;
+  width: calc(100% - 32px - 200px - 128px - 160px - 66px - 24px);
+  line-height: 31px;
+  border-bottom: 1px solid #c3c3c3;
+}
+.card-token .card-desc span {
+  display: inline-block;
+  width: 100%;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+/********************************************
+ * CLASSES THAT MUST OVERRIDE ANYTHING ELSE *
+ ********************************************/
+.hidden {
+  display: none !important;
 }
 
 /*# sourceMappingURL=styles.css.map */
