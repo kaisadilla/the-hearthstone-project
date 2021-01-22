@@ -14,7 +14,21 @@
         <span class="tool">My decks</span>
         <span class="tool">My cards</span>
     </header>
+    <aside class="aside-tools">
+        <span class="title" id="card-name">card-name</span>
+        <span class="section">Card</span>
+        <div class="card-showcase">
+            <img class="tile" src="https://art.hearthstonejson.com/v1/render/latest/enUS/256x/EX1_016.png" />
+        </div>
+    </aside>
     <main>
+        <div class="card-info-table">
+            <div class="card-name">
+                <img class="tile" src="https://art.hearthstonejson.com/v1/tiles/EX1_016.png" />
+                <span class="tile-fade-out"></span>
+                <span class="caption">Sylvanas Windrunner</span>
+            </div>
+        </div>
     </main>
 
     <!-- script section -->
@@ -24,6 +38,7 @@
     <script src="js/html-card-data.js"></script>
     <script>
         loadData();
+        fillCardData();
     </script>
 </body>
 </html>

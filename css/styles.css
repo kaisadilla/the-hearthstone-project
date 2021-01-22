@@ -44,7 +44,7 @@ header .tool {
   line-height: 35pt;
 }
 
-.collection-tools {
+.aside-tools {
   background-color: #ffb00d;
   position: fixed;
   z-index: 1;
@@ -56,14 +56,14 @@ header .tool {
   /* hide scrollbar */
   scrollbar-width: thin;
 }
-.collection-tools::-webkit-scrollbar {
+.aside-tools::-webkit-scrollbar {
   display: none;
 }
-.collection-tools span {
+.aside-tools span {
   display: block;
   width: 100%;
 }
-.collection-tools span.title {
+.aside-tools span.title {
   font-size: 14pt;
   font-weight: 600;
   text-align: center;
@@ -71,33 +71,41 @@ header .tool {
   height: 40px;
   padding-top: 15px;
 }
-.collection-tools span.section {
+.aside-tools span.section {
   background-color: #e18921;
   padding: 3px 0 3px 10px;
   text-transform: uppercase;
   font-weight: 600;
   color: #3f1811;
 }
-.collection-tools span.option {
+.aside-tools span.option {
   padding: 5px 0 5px 20px;
 }
-.collection-tools span.option:not(:last-child) {
+.aside-tools span.option:not(:last-child) {
   border-bottom: 1px solid #e18921;
 }
-.collection-tools span.option.chosen {
+.aside-tools span.option.chosen {
   background-color: #492609;
   color: #e1e1e1;
 }
-.collection-tools span.option.chosen:hover {
+.aside-tools span.option.chosen:hover {
   background-color: #694429;
 }
-.collection-tools span.option:hover {
+.aside-tools span.option:hover {
   cursor: pointer;
   background-color: #facd5f;
 }
-.collection-tools .class-buttons, .collection-tools .cost-buttons {
+.aside-tools .class-buttons, .aside-tools .cost-buttons {
   text-align: center;
   margin: 10px 30px 10px 30px;
+}
+.aside-tools .card-showcase {
+  width: 100%;
+  height: 375px;
+}
+.aside-tools .card-showcase img {
+  display: block;
+  margin: auto;
 }
 
 main {
@@ -144,6 +152,9 @@ main {
   padding: 7px 0px 7px 35px;
   width: 465px;
 }
+.search-card > input:focus {
+  outline: none;
+}
 .search-card > span {
   color: #492609;
   position: absolute;
@@ -160,6 +171,7 @@ main {
 
 .filter-exp {
   display: inline-block;
+  padding-left: 20px;
 }
 .filter-exp > select {
   width: 250px;
@@ -169,6 +181,9 @@ main {
   border: 1px solid #492609;
   border-radius: 5px;
   padding: 7px 0px 7px 5px;
+}
+.filter-exp > select option:first-child {
+  color: #878787;
 }
 
 .card-container-gallery, .card-container-list {
@@ -316,6 +331,41 @@ main {
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;
+}
+
+.card-info-table .card-name {
+  height: 42px;
+  width: 800px;
+  border-top: 1px solid black;
+  border-right: 1px solid black;
+  border-bottom: 1px solid black;
+  background-color: #333;
+}
+.card-info-table .card-name .tile {
+  display: block;
+  position: absolute;
+  height: inherit;
+  width: 200px;
+  object-fit: cover;
+  margin-left: 600px;
+}
+.card-info-table .card-name .tile-fade-out {
+  position: absolute;
+  width: 200px;
+  height: 42px;
+  margin-left: 600px;
+  background: linear-gradient(120deg, #333, #333 35%, transparent 70%, transparent);
+}
+.card-info-table .card-name .caption {
+  display: block;
+  position: absolute;
+  height: inherit;
+  width: inherit;
+  font-weight: 600;
+  color: white;
+  text-shadow: -1px -1px 0 black, 1px -1px 0 black, -1px 1px 0 black, 1px 1px 0 black;
+  line-height: 41px;
+  padding-left: 10px;
 }
 
 /********************************************

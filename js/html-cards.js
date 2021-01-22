@@ -1,11 +1,12 @@
 const ALL_EXPANSIONS_OPTION = `<option value="all">(All)</option>`;
 
 function buildExpMenu () {
-    if(typeof expansions === "undefined"){
-        setTimeout(buildExpMenu, 100);
+    // check that 'expansions' contains some key that we always expect, such as "EXPERT1".
+    if (isDataLoaded(expansions) && expansions["EXPERT1"] != undefined) {
+        _buildMenuFromExp(expansions);
     }
     else{
-        _buildMenuFromExp(expansions);
+        setTimeout(buildExpMenu, 100);
     }
 }
 
@@ -33,7 +34,7 @@ function displayExpansion () {
     list.empty();
 
     for (let c of collectibleCards) {
-        if (chosenExp === "all" || c["set"] === chosenExp) {
+        if ((chosenExp === "all" || c["set"] === chosenExp) && c["text"] !== undefined) {
             gallery.append(`
                 <img class="card-showcase" src="https://art.hearthstonejson.com/v1/render/latest/enUS/256x/${c["id"]}.png" alt="${c["name"]}"
                 data-name="${c["name"]}"
@@ -42,7 +43,7 @@ function displayExpansion () {
                 />`);
             
             list.append(`
-                <a href="card-data.html?card=${c["id"]}"
+                <a href="card-data.html?card=${c["id"]}" target="_blank">
                     <div class="card-token" data-name="${c["name"]}" data-cost="${c["cost"]}" data-class="${c["cardClass"]}">
                         <div class="card-cost rarity-${c["rarity"].toLowerCase()}">${c["cost"]}</div>
                         <div class="card-name">
