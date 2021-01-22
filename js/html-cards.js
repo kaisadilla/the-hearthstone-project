@@ -1,25 +1,12 @@
 const ALL_EXPANSIONS_OPTION = `<option value="all">(All)</option>`;
 
-let collectibleCards;
-let expansions;
-
-function writeCollectibleCards () {
-    $.ajax({
-        dataType: "json",
-        url: URL_CARD_COLLECTIBLE,
-        success: res => { collectibleCards = res }
-    })
-}
-
 function buildExpMenu () {
-    $.ajax({
-        dataType: "json",
-        url: URL_EXPANSIONS,
-        success: res => {
-            expansions = res;
-            _buildMenuFromExp(res)
-        }
-    })
+    if(typeof expansions === "undefined"){
+        setTimeout(buildExpMenu, 100);
+    }
+    else{
+        _buildMenuFromExp(expansions);
+    }
 }
 
 function setDisplay (display) {
@@ -55,26 +42,28 @@ function displayExpansion () {
                 />`);
             
             list.append(`
-                <div class="card-token" data-name="${c["name"]}" data-cost="${c["cost"]}" data-class="${c["cardClass"]}">
-                    <div class="card-cost rarity-${c["rarity"].toLowerCase()}">${c["cost"]}</div>
-                    <div class="card-name">
-                        <img class="tile" src="https://art.hearthstonejson.com/v1/tiles/${c["id"]}.png" />
-                        <span class="tile-fade-out"></span>
-                        <span class="caption">${c["name"]}</span>
+                <a href="card-data.html?card=${c["id"]}"
+                    <div class="card-token" data-name="${c["name"]}" data-cost="${c["cost"]}" data-class="${c["cardClass"]}">
+                        <div class="card-cost rarity-${c["rarity"].toLowerCase()}">${c["cost"]}</div>
+                        <div class="card-name">
+                            <img class="tile" src="https://art.hearthstonejson.com/v1/tiles/${c["id"]}.png" />
+                            <span class="tile-fade-out"></span>
+                            <span class="caption">${c["name"]}</span>
+                        </div>
+                        <div class="card-stats">
+                            ${c["type"] === "MINION" ? `<div class="card-atk">${c["attack"]}</div>` : `<div class="card-void"></div>`}
+                            ${c["type"] === "MINION" ? `<div class="card-hp">${c["health"]}</div>` : `<div class="card-void"></div>`}
+                        </div>
+                        <span class="card-exp">${_getExpSymbol(c["set"])}</span>
+                        <div class="card-class">
+                            <img class="class-button class-icon" src="img/class-${c["cardClass"]}.png" />
+                            <span class="class-label">${_getClassName(c["cardClass"])}</span>
+                        </div>
+                        <div class="card-desc">
+                            <span title='${_stripTags(c["text"])}'>${_normalizeCardText(c["text"])}</span>
+                        </div>
                     </div>
-                    <div class="card-stats">
-                        ${c["type"] === "MINION" ? `<div class="card-atk">${c["attack"]}</div>` : `<div class="card-void"></div>`}
-                        ${c["type"] === "MINION" ? `<div class="card-hp">${c["health"]}</div>` : `<div class="card-void"></div>`}
-                    </div>
-                    <span class="card-exp">${_getExpSymbol(c["set"])}</span>
-                    <div class="card-class">
-                        <img class="class-button class-icon" src="img/class-${c["cardClass"]}.png" />
-                        <span class="class-label">${_getClassName(c["cardClass"])}</span>
-                    </div>
-                    <div class="card-desc">
-                        <span title='${_stripTags(c["text"])}'>${_normalizeCardText(c["text"])}</span>
-                    </div>
-                </div>
+                </a>
             `);
         }
     }

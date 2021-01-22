@@ -263,6 +263,10 @@ main {
 
 .card-container-gallery, .card-container-list {
     margin: 20px 5px 20px 0px;
+    a {
+        text-decoration: none;
+        color: $text-color-dark;
+    }
 }
 
 .card-showcase {
@@ -309,7 +313,6 @@ main {
         &.rarity-legendary { background-color: $rarity-legendary; }
     }
     .card-name {
-        //display: inline-block;
         height: $height;
         width: $width-name;
         border-top: 1px solid black;
@@ -321,7 +324,6 @@ main {
             height: inherit;
             width: inherit;
             object-fit: cover;
-            //background-color: #333;
         }
         .tile-fade-out {
             $threshold: 35%; // the start of the transition from color to image.
