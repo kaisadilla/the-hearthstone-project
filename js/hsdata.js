@@ -14,6 +14,74 @@ function getCardById (id) {
     return collectibleCards.find(e => e.id === id);
 }
 
+function getClassName (className) {
+    if (className === "DEMONHUNTER") return "Demon hunter";
+    if (className === "DRUID")       return "Druid";
+    if (className === "HUNTER")      return "Hunter";
+    if (className === "MAGE")        return "Mage";
+    if (className === "PALADIN")     return "Paladin";
+    if (className === "PRIEST")      return "Priest";
+    if (className === "ROGUE")       return "Rogue";
+    if (className === "SHAMAN")      return "Shaman";
+    if (className === "WARLOCK")     return "Warlock";
+    if (className === "WARRIOR")     return "Warrior";
+    if (className === "NEUTRAL")     return "Neutral";
+    return className;
+}
+
+function getTypeName (type) {
+    if (type === "MINION") return "Minion";
+    if (type === "SPELL")  return "Spell";
+    if (type === "WEAPON") return "Weapon";
+    if (type === "HERO")   return "Hero";
+    return type;
+}
+
+function getRaceName (race) {
+    if (race === "ALL")        return "All";
+    if (race === "BEAST")      return "Beast";
+    if (race === "DEMON")      return "Demon";
+    if (race === "DRAGON")     return "Dragon";
+    if (race === "ELEMENTAL")  return "Elemental";
+    if (race === "MECHANICAL") return "Mech";
+    if (race === "MURLOC")     return "Murloc";
+    if (race === "PIRATE")     return "Pirate";
+    if (race === "TOTEM")      return "Totem";
+    return race;
+}
+
+function getRarityName (rarity) {
+    if (rarity === "FREE")      return "Basic";
+    if (rarity === "COMMON")    return "Common";
+    if (rarity === "RARE")      return "Rare";
+    if (rarity === "EPIC")      return "Epic";
+    if (rarity === "LEGENDARY") return "Legendary";
+    return rarity;
+}
+
+function getExpSymbol (expName) {
+    return expansions[expName]["symbol"];
+}
+
+// TODO: Fix this
+function stripTags (text) {
+    if (typeof text === "string") {
+        return _normalizeCardText(text).replace(/<[^>]*>/, "");
+    }
+    else {
+        return text;
+    }
+}
+
+function normalizeCardText (text) {
+    if (typeof text === "string") {
+        return text.replace("$", "").replace("#", "").replace("[x]", "").replace(`'`, `"`);
+    }
+    else {
+        return text;
+    }
+}
+
 function _writeCollectibleCards () {
     $.ajax({
         dataType: "json",

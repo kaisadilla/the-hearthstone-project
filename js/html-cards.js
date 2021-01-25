@@ -36,11 +36,13 @@ function displayExpansion () {
     for (let c of collectibleCards) {
         if ((chosenExp === "all" || c["set"] === chosenExp) && c["text"] !== undefined) {
             gallery.append(`
-                <img class="card-showcase" src="https://art.hearthstonejson.com/v1/render/latest/enUS/256x/${c["id"]}.png" alt="${c["name"]}"
-                data-name="${c["name"]}"
-                data-cost="${c["cost"]}"
-                data-class="${c["cardClass"]}"
-                />`);
+                <a href="card-data.html?card=${c["id"]}" target="_blank">
+                    <img class="card-showcase" src="https://art.hearthstonejson.com/v1/render/latest/enUS/256x/${c["id"]}.png" alt="${c["name"]}"
+                    data-name="${c["name"]}"
+                    data-cost="${c["cost"]}"
+                    data-class="${c["cardClass"]}"
+                    />
+                </a>`);
             
             list.append(`
                 <a href="card-data.html?card=${c["id"]}" target="_blank">
@@ -55,13 +57,13 @@ function displayExpansion () {
                             ${c["type"] === "MINION" ? `<div class="card-atk">${c["attack"]}</div>` : `<div class="card-void"></div>`}
                             ${c["type"] === "MINION" ? `<div class="card-hp">${c["health"]}</div>` : `<div class="card-void"></div>`}
                         </div>
-                        <span class="card-exp">${_getExpSymbol(c["set"])}</span>
+                        <span class="card-exp">${getExpSymbol(c["set"])}</span>
                         <div class="card-class">
                             <img class="class-button class-icon" src="img/class-${c["cardClass"]}.png" />
-                            <span class="class-label">${_getClassName(c["cardClass"])}</span>
+                            <span class="class-label">${getClassName(c["cardClass"])}</span>
                         </div>
                         <div class="card-desc">
-                            <span title='${_stripTags(c["text"])}'>${_normalizeCardText(c["text"])}</span>
+                            <span title='${stripTags(c["text"])}'>${normalizeCardText(c["text"])}</span>
                         </div>
                     </div>
                 </a>
@@ -99,25 +101,6 @@ function filterCardsByName () {
     });
 }
 
-// TODO: Fix this
-function _stripTags (text) {
-    if (typeof text === "string") {
-        return _normalizeCardText(text).replace(/<[^>]*>/, "");
-    }
-    else {
-        return text;
-    }
-}
-
-function _normalizeCardText (text) {
-    if (typeof text === "string") {
-        return text.replace("$", "").replace("#", "").replace(`'`, `"`);
-    }
-    else {
-        return text;
-    }
-}
-
 function _buildMenuFromExp (expansions) {
     let expMenu = $("#exp-menu");
 
@@ -125,22 +108,4 @@ function _buildMenuFromExp (expansions) {
     for (let e in expansions) {
         expMenu.append(`<option value="${e}">${expansions[e]["name"]}</option>`);
     }
-}
-
-function _getClassName (className) {
-    if (className === "DEMONHUNTER") return "Demon hunter";
-    if (className === "DRUID")       return "Druid";
-    if (className === "HUNTER")      return "Hunter";
-    if (className === "MAGE")        return "Mage";
-    if (className === "PALADIN")     return "Paladin";
-    if (className === "PRIEST")      return "Priest";
-    if (className === "ROGUE")       return "Rogue";
-    if (className === "SHAMAN")      return "Shaman";
-    if (className === "WARLOCK")     return "Warlock";
-    if (className === "WARRIOR")     return "Warrior";
-    if (className === "NEUTRAL")     return "Neutral";
-}
-
-function _getExpSymbol (expName) {
-    return expansions[expName]["symbol"];
 }
