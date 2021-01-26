@@ -186,6 +186,14 @@ main {
 .class-button {
   width: 32px;
 }
+.class-button[data-toggled=false] {
+  opacity: 60%;
+}
+.class-button:focus, .class-button:active {
+  outline: none;
+  border: none;
+  -moz-outline-style: none;
+}
 
 .mana-crystal {
   display: inline-block;

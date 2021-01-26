@@ -20,32 +20,32 @@
         <span id="set-display-list" class="option chosen" onclick="setDisplay('list')">List</span>
         <span id="set-display-gallery" class="option" onclick="setDisplay('gallery')">Gallery</span>
         <span class="section">Classes</span> <!-- show transparent class icon for disabled, full icon for enabled -->
-        <div class="class-buttons">
-            <img class="class-button" src="img/class-demonhunter.png" alt="demon_hunter" />
-            <img class="class-button" src="img/class-druid.png" alt="druid" />
-            <img class="class-button" src="img/class-hunter.png" alt="hunter" />
-            <img class="class-button" src="img/class-mage.png" alt="mage" />
-            <img class="class-button" src="img/class-paladin.png" alt="paladin" />
-            <img class="class-button" src="img/class-priest.png" alt="priest" />
-            <img class="class-button" src="img/class-rogue.png" alt="rogue" />
-            <img class="class-button" src="img/class-shaman.png" alt="shaman" />
-            <img class="class-button" src="img/class-warlock.png" alt="warlock" />
-            <img class="class-button" src="img/class-warrior.png" alt="warrior" />
-            <img class="class-button" src="img/class-neutral.png" alt="neutral" />
+        <div class="class-buttons" id="class-buttons">
+            <a href="javascript:void(0)" onclick="filterClass(0)"><img class="class-button" src="img/class-demonhunter.png" alt="demonhunter" data-toggled="false" /></a>
+            <a href="javascript:void(0)" onclick="filterClass(1)"><img class="class-button" src="img/class-druid.png" alt="druid" data-toggled="false" /></a>
+            <a href="javascript:void(0)" onclick="filterClass(2)"><img class="class-button" src="img/class-hunter.png" alt="hunter" data-toggled="false" /></a>
+            <a href="javascript:void(0)" onclick="filterClass(3)"><img class="class-button" src="img/class-mage.png" alt="mage" data-toggled="false" /></a>
+            <a href="javascript:void(0)" onclick="filterClass(4)"><img class="class-button" src="img/class-paladin.png" alt="paladin" data-toggled="false" /></a>
+            <a href="javascript:void(0)" onclick="filterClass(5)"><img class="class-button" src="img/class-priest.png" alt="priest" data-toggled="false" /></a>
+            <a href="javascript:void(0)" onclick="filterClass(6)"><img class="class-button" src="img/class-rogue.png" alt="rogue" data-toggled="false" /></a>
+            <a href="javascript:void(0)" onclick="filterClass(7)"><img class="class-button" src="img/class-shaman.png" alt="shaman" data-toggled="false" /></a>
+            <a href="javascript:void(0)" onclick="filterClass(8)"><img class="class-button" src="img/class-warlock.png" alt="warlock" data-toggled="false" /></a>
+            <a href="javascript:void(0)" onclick="filterClass(9)"><img class="class-button" src="img/class-warrior.png" alt="warrior" data-toggled="false" /></a>
+            <a href="javascript:void(0)" onclick="filterClass(10)"><img class="class-button" src="img/class-neutral.png" alt="neutral" data-toggled="false" /></a>
         </div>
         <span class="section">Cost</span>
         <div class="cost-buttons">
-            <div class="mana-crystal">0</div>
-            <div class="mana-crystal">1</div>
-            <div class="mana-crystal">2</div>
-            <div class="mana-crystal">3</div>
-            <div class="mana-crystal">4</div>
-            <div class="mana-crystal">5</div>
-            <div class="mana-crystal">6</div>
-            <div class="mana-crystal">7</div>
-            <div class="mana-crystal">8</div>
-            <div class="mana-crystal">9</div>
-            <div class="mana-crystal">10</div>
+            <div class="mana-crystal" data-toggled="false">0</div>
+            <div class="mana-crystal" data-toggled="false">1</div>
+            <div class="mana-crystal" data-toggled="false">2</div>
+            <div class="mana-crystal" data-toggled="false">3</div>
+            <div class="mana-crystal" data-toggled="false">4</div>
+            <div class="mana-crystal" data-toggled="false">5</div>
+            <div class="mana-crystal" data-toggled="false">6</div>
+            <div class="mana-crystal" data-toggled="false">7</div>
+            <div class="mana-crystal" data-toggled="false">8</div>
+            <div class="mana-crystal" data-toggled="false">9</div>
+            <div class="mana-crystal" data-toggled="false">10</div>
         </div>
         <span class="section">Rarity</span>
         <span class="option">Common</span>

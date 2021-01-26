@@ -289,6 +289,16 @@ main {
 
 .class-button {
     width: 32px;
+
+    &[data-toggled="false"] {
+        opacity: 60%;
+    }
+
+    &:focus, &:active {
+        outline: none;
+        border: none;
+        -moz-outline-style: none;
+    }
 }
 
 .mana-crystal {

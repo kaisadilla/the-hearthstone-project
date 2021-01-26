@@ -2,7 +2,7 @@ const ALL_EXPANSIONS_OPTION = `<option value="all">(All)</option>`;
 
 function buildExpMenu () {
     // check that 'expansions' contains some key that we always expect, such as "EXPERT1".
-    if (isDataLoaded(expansions) && expansions["EXPERT1"] != undefined) {
+    if (isDataLoaded(expansions) && expansions != undefined && expansions["EXPERT1"] != undefined) {
         _buildMenuFromExp(expansions);
     }
     else{
@@ -99,6 +99,26 @@ function filterCardsByName () {
             c.addClass("hidden");
         }
     });
+}
+
+let classFilter = 0b0000000000; // this is clearly flexing
+
+function filterClass (classIndex) {
+    classFilter ^= 1 << classIndex;
+
+    let classButtons = $("#class-buttons > a > img");
+
+    for (let i = 0; i < 10; i++) {
+        console.log(classFilter & (1 << i));
+        if (classFilter & (1 << i) != 0) {
+            console.log("true");
+            $(classButtons[i]).data("toggled", "true");
+        }
+        else {
+            console.log("false");
+            $(classButtons[i]).data("toggled", "false");
+        }
+    }
 }
 
 function _buildMenuFromExp (expansions) {

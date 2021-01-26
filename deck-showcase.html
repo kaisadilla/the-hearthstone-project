@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Deck – the Hearthstone project</title>
+    <!-- styles -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="css/styles.css" rel="stylesheet">
+</head>
+<body>
+    <header>
+        <span class="proj-title">the Hearthstone project</span>
+        <span class="tool">My decks</span>
+        <span class="tool">My cards</span>
+    </header>
+    <aside class="aside-tools">
+        <span class="title">Filters</span>
+        <span class="section">Display</span>
+        <span id="set-display-list" class="option chosen" onclick="setDisplay('list')">List</span>
+        <span id="set-display-gallery" class="option" onclick="setDisplay('gallery')">Gallery</span>
+        <span class="section">Classes</span> <!-- show transparent class icon for disabled, full icon for enabled -->
+        <div class="class-buttons">
+            <img class="class-button" src="img/class-demonhunter.png" alt="demon_hunter" data-toggled="false" />
+            <img class="class-button" src="img/class-druid.png" alt="druid" data-toggled="false" />
+            <img class="class-button" src="img/class-hunter.png" alt="hunter" data-toggled="false" />
+            <img class="class-button" src="img/class-mage.png" alt="mage" data-toggled="false" />
+            <img class="class-button" src="img/class-paladin.png" alt="paladin" data-toggled="false" />
+            <img class="class-button" src="img/class-priest.png" alt="priest" data-toggled="false" />
+            <img class="class-button" src="img/class-rogue.png" alt="rogue" data-toggled="false" />
+            <img class="class-button" src="img/class-shaman.png" alt="shaman" data-toggled="false" />
+            <img class="class-button" src="img/class-warlock.png" alt="warlock" data-toggled="false" />
+            <img class="class-button" src="img/class-warrior.png" alt="warrior" data-toggled="false" />
+            <img class="class-button" src="img/class-neutral.png" alt="neutral" data-toggled="false" />
+        </div>
+        <span class="section">Cost</span>
+        <div class="cost-buttons">
+            <div class="mana-crystal">0</div>
+            <div class="mana-crystal">1</div>
+            <div class="mana-crystal">2</div>
+            <div class="mana-crystal">3</div>
+            <div class="mana-crystal">4</div>
+            <div class="mana-crystal">5</div>
+            <div class="mana-crystal">6</div>
+            <div class="mana-crystal">7</div>
+            <div class="mana-crystal">8</div>
+            <div class="mana-crystal">9</div>
+            <div class="mana-crystal">10</div>
+        </div>
+        <span class="section">Rarity</span>
+        <span class="option">Common</span>
+        <span class="option">Rare</span>
+        <span class="option">Epic</span>
+        <span class="option">Legendary</span>
+        <span class="section">Type</span>
+        <span class="option">Minion</span>
+        <span class="option">Spell</span>
+        <span class="option">Weapon</span>
+        <span class="option">Hero</span>
+        <span class="section">Tribe</span>
+        <span class="option">Beast</span>
+        <span class="option">Demon</span>
+        <span class="option">Dragon</span>
+        <span class="option">Elemental</span>
+        <span class="option">Mech</span>
+        <span class="option">Murloc</span>
+        <span class="option">Pirate</span>
+        <span class="option">Totem</span>
+    </aside>
+    <main>
+    </main>
+
+    <!-- script section -->
+    <script src="js/jquery-3.5.1.min.js"></script>
+    <script src="js/urls.js"></script>
+    <script src="js/hsdata.js"></script>
+    <script>
+        loadData();
+    </script>
+</body>
+</html>
