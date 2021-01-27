@@ -141,10 +141,23 @@ header {
     &::-webkit-scrollbar { 
         display: none; 
     }
+    
+    a {
+        text-decoration: none;
+        color: $text-color-dark;
+    }
 
     > span {
         display: block;
         width: 100%;
+
+        
+        a {
+            display: block;
+            width: 100%;
+            text-decoration: none;
+            color: $text-color-dark;
+        }
 
         &.title {
             font-size: 14pt;
@@ -174,6 +187,7 @@ header {
             &.chosen {
                 background-color: $primary-color;
                 color: $text-color-bright;
+                border-bottom: 1px solid $primary-color-dark2;
 
                 &:hover {
                     background-color: $primary-color-light1;
@@ -312,6 +326,10 @@ main {
     line-height: 30px;
     @include background-size(cover);
     @include manafy();
+
+    &[data-toggled="false"] {
+        opacity: 60%;
+    }
 }
 
 main {

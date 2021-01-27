@@ -34,38 +34,40 @@
             <a href="javascript:void(0)" onclick="filterClass(10)"><img class="class-button" src="img/class-neutral.png" alt="neutral" data-toggled="false" /></a>
         </div>
         <span class="section">Cost</span>
-        <div class="cost-buttons">
-            <div class="mana-crystal" data-toggled="false">0</div>
-            <div class="mana-crystal" data-toggled="false">1</div>
-            <div class="mana-crystal" data-toggled="false">2</div>
-            <div class="mana-crystal" data-toggled="false">3</div>
-            <div class="mana-crystal" data-toggled="false">4</div>
-            <div class="mana-crystal" data-toggled="false">5</div>
-            <div class="mana-crystal" data-toggled="false">6</div>
-            <div class="mana-crystal" data-toggled="false">7</div>
-            <div class="mana-crystal" data-toggled="false">8</div>
-            <div class="mana-crystal" data-toggled="false">9</div>
-            <div class="mana-crystal" data-toggled="false">10</div>
+        <div class="cost-buttons" id="cost-buttons">
+            <a href="javascript:void(0)" onclick="filterMana(0)"><div class="mana-crystal" data-toggled="false">0</div></a>
+            <a href="javascript:void(0)" onclick="filterMana(1)"><div class="mana-crystal" data-toggled="false">1</div></a>
+            <a href="javascript:void(0)" onclick="filterMana(2)"><div class="mana-crystal" data-toggled="false">2</div></a>
+            <a href="javascript:void(0)" onclick="filterMana(3)"><div class="mana-crystal" data-toggled="false">3</div></a>
+            <a href="javascript:void(0)" onclick="filterMana(4)"><div class="mana-crystal" data-toggled="false">4</div></a>
+            <a href="javascript:void(0)" onclick="filterMana(5)"><div class="mana-crystal" data-toggled="false">5</div></a>
+            <a href="javascript:void(0)" onclick="filterMana(6)"><div class="mana-crystal" data-toggled="false">6</div></a>
+            <a href="javascript:void(0)" onclick="filterMana(7)"><div class="mana-crystal" data-toggled="false">7</div></a>
+            <a href="javascript:void(0)" onclick="filterMana(8)"><div class="mana-crystal" data-toggled="false">8</div></a>
+            <a href="javascript:void(0)" onclick="filterMana(9)"><div class="mana-crystal" data-toggled="false">9</div></a>
+            <a href="javascript:void(0)" onclick="filterMana(10)"><div class="mana-crystal" data-toggled="false">10</div></a>
         </div>
         <span class="section">Rarity</span>
-        <span class="option">Common</span>
-        <span class="option">Rare</span>
-        <span class="option">Epic</span>
-        <span class="option">Legendary</span>
+        <span class="option" onclick="filterByRarity(this, 0)">Common</span>
+        <span class="option" onclick="filterByRarity(this, 1)">Rare</span>
+        <span class="option" onclick="filterByRarity(this, 2)">Epic</span>
+        <span class="option" onclick="filterByRarity(this, 3)">Legendary</span>
         <span class="section">Type</span>
-        <span class="option">Minion</span>
-        <span class="option">Spell</span>
-        <span class="option">Weapon</span>
-        <span class="option">Hero</span>
+        <span class="option" onclick="filterByType(this, 0)">Minion</span>
+        <span class="option" onclick="filterByType(this, 1)">Spell</span>
+        <span class="option" onclick="filterByType(this, 2)">Weapon</span>
+        <span class="option" onclick="filterByType(this, 3)">Hero</span>
         <span class="section">Tribe</span>
-        <span class="option">Beast</span>
-        <span class="option">Demon</span>
-        <span class="option">Dragon</span>
-        <span class="option">Elemental</span>
-        <span class="option">Mech</span>
-        <span class="option">Murloc</span>
-        <span class="option">Pirate</span>
-        <span class="option">Totem</span>
+        <span class="option" onclick="filterByTribe(this, 0)">(none)</span>
+        <span class="option" onclick="filterByTribe(this, 1)">Beast</span>
+        <span class="option" onclick="filterByTribe(this, 2)">Demon</span>
+        <span class="option" onclick="filterByTribe(this, 3)">Dragon</span>
+        <span class="option" onclick="filterByTribe(this, 4)">Elemental</span>
+        <span class="option" onclick="filterByTribe(this, 5)">Mech</span>
+        <span class="option" onclick="filterByTribe(this, 6)">Murloc</span>
+        <span class="option" onclick="filterByTribe(this, 7)">Pirate</span>
+        <span class="option" onclick="filterByTribe(this, 8)">Totem</span>
+        <span class="option" onclick="filterByTribe(this, 9)">All</span>
     </aside>
     <main>
         <div class="card-filters">

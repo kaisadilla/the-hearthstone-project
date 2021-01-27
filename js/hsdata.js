@@ -1,6 +1,20 @@
 let collectibleCards;
 let expansions;
 
+/*let classIds = [
+    "DEMONHUNTER",
+    "DRUID",
+    "HUNTER",
+    "MAGE",
+    "PALADIN",
+    "PRIEST",
+    "ROGUE",
+    "SHAMAN",
+    "WARLOCK",
+    "WARRIOR",
+    "NEUTRAL",
+]*/
+
 function loadData () {
     _writeCollectibleCards();
     _writeExp();
@@ -66,7 +80,7 @@ function getExpSymbol (expName) {
 // TODO: Fix this
 function stripTags (text) {
     if (typeof text === "string") {
-        return _normalizeCardText(text).replace(/<[^>]*>/, "");
+        return normalizeCardText(text).replace(/<[^>]*>/, "");
     }
     else {
         return text;
