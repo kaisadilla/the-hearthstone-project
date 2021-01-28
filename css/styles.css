@@ -52,12 +52,12 @@ header .tool {
   background-color: #ffb00d;
   position: fixed;
   z-index: 1;
-  top: 1;
+  bottom: 0;
   left: 0;
   overflow-x: hidden;
   height: calc(100% - 50px);
   width: 300px;
-  /* hide scrollbar */
+  /* make scrollbar smaller again */
   scrollbar-width: thin;
 }
 .aside-tools::-webkit-scrollbar {
@@ -195,6 +195,9 @@ header .tool {
 main {
   margin-left: 300px;
   margin-top: 50px;
+}
+main.two-asides {
+  margin-right: 300px;
 }
 
 .class-button {
@@ -422,6 +425,94 @@ main {
   text-overflow: ellipsis;
 }
 
+.deck-cards {
+  width: 235px;
+  margin: 0 auto;
+  margin-top: 10px;
+}
+
+.card-token-reduced {
+  display: flex;
+  height: 33px;
+  width: 235px;
+}
+.card-token-reduced:nth-child(even) {
+  background-color: #eaeaea;
+}
+.card-token-reduced .card-cost {
+  width: 32px;
+  height: 32px;
+  font-size: 16pt;
+  text-align: center;
+  line-height: 31px;
+  font-family: "Belwe Std Bold", sans-serif;
+  color: white;
+  text-shadow: -1px -1px 0 black, 1px -1px 0 black, -1px 1px 0 black, 1px 1px 0 black;
+  border: 1px solid black;
+}
+.card-token-reduced .card-cost.rarity-free {
+  background-color: #247222;
+}
+.card-token-reduced .card-cost.rarity-common {
+  background-color: #858585;
+}
+.card-token-reduced .card-cost.rarity-rare {
+  background-color: #286097;
+}
+.card-token-reduced .card-cost.rarity-epic {
+  background-color: #674196;
+}
+.card-token-reduced .card-cost.rarity-legendary {
+  background-color: #99631d;
+}
+.card-token-reduced .card-name {
+  height: 32px;
+  width: 200px;
+  border-top: 1px solid black;
+  border-right: 1px solid black;
+  border-bottom: 1px solid black;
+}
+.card-token-reduced .card-name .tile {
+  display: block;
+  position: absolute;
+  height: inherit;
+  width: inherit;
+  object-fit: cover;
+}
+.card-token-reduced .card-name .tile-fade-out {
+  position: absolute;
+  width: 200px;
+  height: 32px;
+  background: linear-gradient(120deg, #333, #333 35%, transparent 70%, transparent);
+}
+.card-token-reduced .card-name .caption {
+  display: block;
+  position: absolute;
+  height: inherit;
+  width: inherit;
+  font-weight: 600;
+  color: white;
+  text-shadow: -1px -1px 0 black, 1px -1px 0 black, -1px 1px 0 black, 1px 1px 0 black;
+  line-height: 31px;
+  padding-left: 10px;
+}
+.card-token-reduced .card-amount {
+  position: absolute;
+  left: 234px;
+  width: 32px;
+  height: 32px;
+  font-size: 16pt;
+  text-align: center;
+  line-height: 31px;
+  font-family: "Belwe Std Bold", sans-serif;
+  color: white;
+  text-shadow: -1px -1px 0 black, 1px -1px 0 black, -1px 1px 0 black, 1px 1px 0 black;
+  color: #ffb00d;
+  border: 1px solid black;
+  background-color: #492609;
+  z-index: 2;
+}
+
 .card-info-table .card-name {
   height: 42px;
   width: 800px;
@@ -457,11 +548,69 @@ main {
   padding-left: 10px;
 }
 
+.deck-view {
+  border: 1px solid black;
+  position: fixed;
+  z-index: 1;
+  bottom: 0;
+  right: 0;
+  overflow-x: hidden;
+  height: calc(100% - 50px);
+  width: 300px;
+}
+.deck-view > .deck-hero {
+  margin-top: 1px;
+  border: 7px solid #341409;
+  width: 100%;
+  height: 100px;
+  box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+}
+.deck-view > .deck-hero > .deck-hero-frame {
+  width: calc(100% - 14px);
+  height: 86px;
+}
+.deck-view > .deck-hero > .deck-hero-frame > img {
+  position: absolute;
+  width: inherit;
+  height: inherit;
+  object-fit: cover;
+  object-position: 0% 20%;
+}
+.deck-view > .deck-hero > .deck-hero-frame > .deck-name {
+  position: absolute;
+  display: block;
+  width: inherit;
+  height: inherit;
+}
+.deck-view > .deck-hero > .deck-hero-frame > .deck-name > input {
+  width: inherit;
+  line-height: 97px;
+  background-color: transparent;
+  border: none;
+  font-family: "Belwe Std Bold", sans-serif;
+  color: white;
+  text-shadow: -1px -1px 0 black, 1px -1px 0 black, -1px 1px 0 black, 1px 1px 0 black;
+  font-size: 18pt;
+  text-align: center;
+}
+.deck-view > .deck-hero > .deck-hero-frame > .deck-name > input:focus {
+  outline: none;
+}
+
 /********************************************
  * CLASSES THAT MUST OVERRIDE ANYTHING ELSE *
  ********************************************/
 .hidden {
   display: none !important;
+}
+
+.draggable {
+  cursor: move;
+  cursor: grab;
+  cursor: -moz-grab;
+  cursor: -webkit-grab;
 }
 
 /*# sourceMappingURL=styles.css.map */

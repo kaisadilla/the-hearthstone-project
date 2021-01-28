@@ -1,4 +1,94 @@
+/*
 
+
+<!-- discard
+
+            <div class="card-token">
+                <div class="card-cost">5</div>
+                <div class="card-name">
+                    <img class="tile" src="https://art.hearthstonejson.com/v1/tiles/AT_001.png" />
+                    <span class="tile-fade-out"></span>
+                    <span class="caption">Scavenger's Ingenuity</span>
+                </div>
+                <div class="card-stats">
+                    <div class="card-atk">12</div>
+                    <div class="card-hp">12</div>
+                </div>
+                <span class="card-exp">TGT</span>
+                <div class="card-class">
+                    <img class="class-button class-icon" src="img/class-mage.png" alt="mage" />
+                    <span class="class-label">Mage</span>
+                </div>
+                <div class="card-desc">
+                    <span>This is a very long description that will fill up all the space and will need to be cropped or else we riot I guess.</span>
+                </div>
+            </div>
+
+        <div class="card-info-table">
+            <div class="card-name">
+                <img class="tile" src="https://art.hearthstonejson.com/v1/tiles/EX1_016.png" />
+                <span class="tile-fade-out"></span>
+                <span class="caption">Sylvanas Windrunner</span>
+            </div>
+        </div>
+
+        
+    <aside class="aside-tools">
+        <span class="title" id="card-name">card-name</span>
+        <span class="section">Card</span>
+        <div class="card-showcase" id="card-image">
+            <img class="tile" src="https://art.hearthstonejson.com/v1/render/latest/enUS/256x/EX1_016.png" />
+        </div>
+        <div class="legend-info-icon" id="card-class">
+            <span class="legend">Class</span>
+            <div class="value">
+                <span>Mage</span>
+                <img class="class-button" src="img/class-mage.png" alt="demon_hunter" />
+            </div>
+        </div>
+        <span class="section">Information</span>
+        <div class="legend-info" id="card-cost">
+            <span class="legend">Cost</span>
+            <span class="value">6</span>
+        </div>
+        <div class="legend-info" id="card-type">
+            <span class="legend">Type</span>
+            <span class="value">Minion</span>
+        </div>
+        <div class="legend-info" id="card-race">
+            <span class="legend">Race</span>
+            <span class="value">–</span>
+        </div>
+        <div class="legend-info" id="card-attack">
+            <span class="legend">Attack</span>
+            <span class="value">5</span>
+        </div>
+        <div class="legend-info" id="card-health">
+            <span class="legend">Health</span>
+            <span class="value">5</span>
+        </div>
+        <div class="info" id="card-text">
+            <span><b>Deathrattle:</b> Gain control of a random enemy minion.</span>
+        </div>
+        <div class="legend-info" id="card-rarity">
+            <span class="legend">Rarity</span>
+            <span class="value">Common</span>
+        </div>
+        <div class="legend-info" id="card-exp">
+            <span class="legend">Set</span>
+            <span class="value">TGT</span>
+        </div>
+        <div class="legend-info" id="card-artist">
+            <span class="legend">Artist</span>
+            <span class="value">Zoltan Boros</span>
+        </div>
+        <div class="info flavor" id="card-flavor">
+            <span>"hehe" – she said.</span>
+        </div>
+    </aside>
+
+-->
+*/
     
     /*$(".card-showcase").each((_, obj) => {
         let c = $(obj);
@@ -195,3 +285,4 @@ function filterCardsByAttribute (filterName, filterObj, value, trigger) {
         }
     }
 }*/
+

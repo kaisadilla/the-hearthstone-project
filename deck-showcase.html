@@ -17,65 +17,116 @@
     <aside class="aside-tools">
         <span class="title">Filters</span>
         <span class="section">Display</span>
-        <span id="set-display-list" class="option chosen" onclick="setDisplay('list')">List</span>
-        <span id="set-display-gallery" class="option" onclick="setDisplay('gallery')">Gallery</span>
+        <span id="set-display-list" class="option" onclick="setDisplay('list')">List</span>
+        <span id="set-display-gallery" class="option chosen" onclick="setDisplay('gallery')">Gallery</span>
         <span class="section">Classes</span> <!-- show transparent class icon for disabled, full icon for enabled -->
-        <div class="class-buttons">
-            <img class="class-button" src="img/class-demonhunter.png" alt="demon_hunter" data-toggled="false" />
-            <img class="class-button" src="img/class-druid.png" alt="druid" data-toggled="false" />
-            <img class="class-button" src="img/class-hunter.png" alt="hunter" data-toggled="false" />
-            <img class="class-button" src="img/class-mage.png" alt="mage" data-toggled="false" />
-            <img class="class-button" src="img/class-paladin.png" alt="paladin" data-toggled="false" />
-            <img class="class-button" src="img/class-priest.png" alt="priest" data-toggled="false" />
-            <img class="class-button" src="img/class-rogue.png" alt="rogue" data-toggled="false" />
-            <img class="class-button" src="img/class-shaman.png" alt="shaman" data-toggled="false" />
-            <img class="class-button" src="img/class-warlock.png" alt="warlock" data-toggled="false" />
-            <img class="class-button" src="img/class-warrior.png" alt="warrior" data-toggled="false" />
-            <img class="class-button" src="img/class-neutral.png" alt="neutral" data-toggled="false" />
+        <div class="class-buttons" id="class-buttons">
+            <a href="javascript:void(0)" onclick="filterByClass(this, 0)"><img class="class-button" src="img/class-demonhunter.png" alt="demonhunter" data-toggled="false" /></a>
+            <a href="javascript:void(0)" onclick="filterByClass(this, 1)"><img class="class-button" src="img/class-druid.png" alt="druid" data-toggled="false" /></a>
+            <a href="javascript:void(0)" onclick="filterByClass(this, 2)"><img class="class-button" src="img/class-hunter.png" alt="hunter" data-toggled="false" /></a>
+            <a href="javascript:void(0)" onclick="filterByClass(this, 3)"><img class="class-button" src="img/class-mage.png" alt="mage" data-toggled="false" /></a>
+            <a href="javascript:void(0)" onclick="filterByClass(this, 4)"><img class="class-button" src="img/class-paladin.png" alt="paladin" data-toggled="false" /></a>
+            <a href="javascript:void(0)" onclick="filterByClass(this, 5)"><img class="class-button" src="img/class-priest.png" alt="priest" data-toggled="false" /></a>
+            <a href="javascript:void(0)" onclick="filterByClass(this, 6)"><img class="class-button" src="img/class-rogue.png" alt="rogue" data-toggled="false" /></a>
+            <a href="javascript:void(0)" onclick="filterByClass(this, 7)"><img class="class-button" src="img/class-shaman.png" alt="shaman" data-toggled="false" /></a>
+            <a href="javascript:void(0)" onclick="filterByClass(this, 8)"><img class="class-button" src="img/class-warlock.png" alt="warlock" data-toggled="false" /></a>
+            <a href="javascript:void(0)" onclick="filterByClass(this, 9)"><img class="class-button" src="img/class-warrior.png" alt="warrior" data-toggled="false" /></a>
+            <a href="javascript:void(0)" onclick="filterByClass(this, 10)"><img class="class-button" src="img/class-neutral.png" alt="neutral" data-toggled="false" /></a>
         </div>
         <span class="section">Cost</span>
-        <div class="cost-buttons">
-            <div class="mana-crystal">0</div>
-            <div class="mana-crystal">1</div>
-            <div class="mana-crystal">2</div>
-            <div class="mana-crystal">3</div>
-            <div class="mana-crystal">4</div>
-            <div class="mana-crystal">5</div>
-            <div class="mana-crystal">6</div>
-            <div class="mana-crystal">7</div>
-            <div class="mana-crystal">8</div>
-            <div class="mana-crystal">9</div>
-            <div class="mana-crystal">10</div>
+        <div class="cost-buttons" id="cost-buttons">
+            <a href="javascript:void(0)" onclick="filterByCost(this, 0)"><div class="mana-crystal" data-toggled="false">0</div></a>
+            <a href="javascript:void(0)" onclick="filterByCost(this, 1)"><div class="mana-crystal" data-toggled="false">1</div></a>
+            <a href="javascript:void(0)" onclick="filterByCost(this, 2)"><div class="mana-crystal" data-toggled="false">2</div></a>
+            <a href="javascript:void(0)" onclick="filterByCost(this, 3)"><div class="mana-crystal" data-toggled="false">3</div></a>
+            <a href="javascript:void(0)" onclick="filterByCost(this, 4)"><div class="mana-crystal" data-toggled="false">4</div></a>
+            <a href="javascript:void(0)" onclick="filterByCost(this, 5)"><div class="mana-crystal" data-toggled="false">5</div></a>
+            <a href="javascript:void(0)" onclick="filterByCost(this, 6)"><div class="mana-crystal" data-toggled="false">6</div></a>
+            <a href="javascript:void(0)" onclick="filterByCost(this, 7)"><div class="mana-crystal" data-toggled="false">7</div></a>
+            <a href="javascript:void(0)" onclick="filterByCost(this, 8)"><div class="mana-crystal" data-toggled="false">8</div></a>
+            <a href="javascript:void(0)" onclick="filterByCost(this, 9)"><div class="mana-crystal" data-toggled="false">9</div></a>
+            <a href="javascript:void(0)" onclick="filterByCost(this, 10)"><div class="mana-crystal" data-toggled="false">10+</div></a>
         </div>
         <span class="section">Rarity</span>
-        <span class="option">Common</span>
-        <span class="option">Rare</span>
-        <span class="option">Epic</span>
-        <span class="option">Legendary</span>
+        <span class="option" onclick="filterByRarity(this, 0)">Common</span>
+        <span class="option" onclick="filterByRarity(this, 1)">Rare</span>
+        <span class="option" onclick="filterByRarity(this, 2)">Epic</span>
+        <span class="option" onclick="filterByRarity(this, 3)">Legendary</span>
         <span class="section">Type</span>
-        <span class="option">Minion</span>
-        <span class="option">Spell</span>
-        <span class="option">Weapon</span>
-        <span class="option">Hero</span>
+        <span class="option" onclick="filterByType(this, 0)">Minion</span>
+        <span class="option" onclick="filterByType(this, 1)">Spell</span>
+        <span class="option" onclick="filterByType(this, 2)">Weapon</span>
+        <span class="option" onclick="filterByType(this, 3)">Hero</span>
         <span class="section">Tribe</span>
-        <span class="option">Beast</span>
-        <span class="option">Demon</span>
-        <span class="option">Dragon</span>
-        <span class="option">Elemental</span>
-        <span class="option">Mech</span>
-        <span class="option">Murloc</span>
-        <span class="option">Pirate</span>
-        <span class="option">Totem</span>
+        <span class="option" onclick="filterByRace(this, 0)">(none)</span>
+        <span class="option" onclick="filterByRace(this, 1)">All (Amalgam)</span>
+        <span class="option" onclick="filterByRace(this, 2)">Beast</span>
+        <span class="option" onclick="filterByRace(this, 3)">Demon</span>
+        <span class="option" onclick="filterByRace(this, 4)">Dragon</span>
+        <span class="option" onclick="filterByRace(this, 5)">Elemental</span>
+        <span class="option" onclick="filterByRace(this, 6)">Mech</span>
+        <span class="option" onclick="filterByRace(this, 7)">Murloc</span>
+        <span class="option" onclick="filterByRace(this, 8)">Pirate</span>
+        <span class="option" onclick="filterByRace(this, 9)">Totem</span>
     </aside>
-    <main>
+    <main class="two-asides" ondrop="drop(event)" ondragover="allowDrop(event)">
+        <div class="card-filters">
+            <div class="search-card">
+                <input type="text" id="search-query" placeholder="Search: Arcane Intellect…" oninput="filterByName()"/>
+                <span class="material-icons">search</span>
+            </div>
+            <div class="filter-exp">
+                <select id="exp-menu" onchange="displayExpansion()">
+                    <option selected value> -- Choose an expansion -- </option>
+                </select>
+            </div>
+        </div>
+        <div class="card-container-gallery" id="card-gallery">
+        </div>
+        <div class="card-container-list hidden" id="card-list">
+        </div>
     </main>
+    
+   <!--<span id="required" draggable="true" ondragstart="dragRequired(event)" ondrop="dropField(event)" ondragover="allowDrop(event)">OBLIGATORIO</span>-->
+    <aside class="deck-view">
+        <div class="deck-hero">
+            <div class="deck-hero-frame">
+                <img src="https://art.hearthstonejson.com/v1/512x/HERO_08.jpg" />
+                <div class="deck-name">
+                    <input type="text" id="deck-name" placeholder="New deck" value="New deck" maxlength=20>
+                </div>
+            </div>
+        </div>
+        <div class="deck-cards">
+            <div class="card-token-reduced draggable" data-id="INT_001" draggable="true" ondragstart="dragDeckCard(event)">
+                <div class="card-cost rarity-rare">5</div>
+                <div class="card-name">
+                    <img class="tile" src="https://art.hearthstonejson.com/v1/tiles/EX1_001.png" />
+                    <span class="tile-fade-out"></span>
+                    <span class="caption">Thing from Below</span>
+                </div>
+                <div class="card-amount">2</div>
+            </div>
+            <div class="card-token-reduced" data-id="INT_001">
+                <div class="card-cost rarity-rare">5</div>
+                <div class="card-name">
+                    <img class="tile" src="https://art.hearthstonejson.com/v1/tiles/EX1_001.png" />
+                    <span class="tile-fade-out"></span>
+                    <span class="caption">Thing from Below</span>
+                </div>
+                <div class="card-amount">2</div>
+            </div>
+        </div>
+    </aside>
 
     <!-- script section -->
     <script src="js/jquery-3.5.1.min.js"></script>
     <script src="js/urls.js"></script>
     <script src="js/hsdata.js"></script>
+    <script src="js/html-cards.js"></script>
     <script>
         loadData();
+        buildExpMenu();
     </script>
 </body>
 </html>

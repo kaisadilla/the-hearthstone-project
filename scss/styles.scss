@@ -130,13 +130,14 @@ header {
 
     position: fixed;
     z-index: 1;
-    top: 1;
+    bottom: 0;
     left: 0;
     overflow-x: hidden;
 
     height: calc(100% - 50px);
     width: 300px;
-    /* hide scrollbar */
+
+    /* make scrollbar smaller again */
     scrollbar-width: thin;
     &::-webkit-scrollbar { 
         display: none; 
@@ -303,6 +304,10 @@ header {
 main {
     margin-left: 300px;
     margin-top: 50px;
+    
+    &.two-asides {
+        margin-right: 300px;
+    }
 }
 
 .class-button {
@@ -536,6 +541,94 @@ main {
     }
 }
 
+.deck-cards {
+    width: 235px;
+    margin: 0 auto;
+    margin-top: 10px;
+}
+
+.card-token-reduced {
+    $height: 32px; // does not include borders.
+    $cost-amount-width: 32px;
+    $width: 232px;
+
+    @mixin normalize-cell-text () {
+        line-height: $height - 1;
+        text-align: center;
+        font-weight: $semibold;
+    }
+
+    display: flex;
+    height: $height + 1;
+    width: $width + 3;
+
+    &:nth-child(even) {
+        background-color: $background-color-bright2;
+    }
+
+    .card-cost {
+        //display: inline-block;
+        width: $cost-amount-width;
+        height: $height;
+        font-size: 16pt;
+        text-align: center;
+        line-height: 31px;
+        @include manafy();
+        border: 1px solid black;
+        &.rarity-free      { background-color: $rarity-basic;    }
+        &.rarity-common    { background-color: $rarity-common;    }
+        &.rarity-rare      { background-color: $rarity-rare;      }
+        &.rarity-epic      { background-color: $rarity-epic;      }
+        &.rarity-legendary { background-color: $rarity-legendary; }
+    }
+    .card-name {
+        height: $height;
+        width: $width - $cost-amount-width;
+        border-top: 1px solid black;
+        border-right: 1px solid black;
+        border-bottom: 1px solid black;
+        .tile {
+            display: block;
+            position: absolute;
+            height: inherit;
+            width: inherit;
+            object-fit: cover;
+        }
+        .tile-fade-out {
+            $threshold: 35%; // the start of the transition from color to image.
+            $spread: 35%; // the extent of the transition. 0% will produce a hard border.
+
+            position: absolute;
+            width: 200px;
+            height: $height;
+            background: linear-gradient(120deg, #333, #333 $threshold, transparent $threshold + $spread, transparent);
+        }
+        .caption {
+            display: block;
+            position: absolute;
+            height: inherit;
+            width: inherit;
+            @include cardfy();
+            line-height: $height - 1;
+            padding-left: 10px;
+        }
+    }
+    .card-amount {
+        position: absolute;
+        left: $width + 2;
+        width: $cost-amount-width;
+        height: $height;
+        font-size: 16pt;
+        text-align: center;
+        line-height: 31px;
+        @include manafy();
+        color: $secondary-color;
+        border: 1px solid black;
+        background-color: $primary-color;
+        z-index: 2;
+    }
+}
+
 .card-info-table {
     $height: 42px;
     $width: 800px;
@@ -579,9 +672,78 @@ main {
     }
 }
 
+.deck-view {
+    border: 1px solid black;
+
+    position: fixed;
+    z-index: 1;
+    bottom: 0;
+    right: 0;
+    overflow-x: hidden;
+    height: calc(100% - 50px);
+    width: 300px;
+
+    > .deck-hero {
+        $width: 100%;
+        $height: 100px;
+        $border-radius: 7px;
+
+        margin-top: 1px;
+        border: $border-radius solid $primary-color-dark1;
+        width: $width;
+        height: $height;
+        box-sizing: border-box;
+        -moz-box-sizing: border-box;
+        -webkit-box-sizing: border-box;
+
+        > .deck-hero-frame {
+            width: calc(#{$width} - #{$border-radius * 2});
+            height: $height - (2 * $border-radius);
+
+            > img {
+                position: absolute;
+                width: inherit;
+                height: inherit;
+                object-fit: cover;
+                object-position: 0% 20%;
+            }
+
+            > .deck-name {
+                position: absolute;
+                display: block;
+                width: inherit;
+                height: inherit;
+    
+                > input {
+                    width: inherit;
+                    line-height: 97px;
+    
+                    background-color: transparent;
+                    border: none;
+    
+                    @include manafy();
+                    font-size: 18pt;
+                    text-align: center;
+    
+                    &:focus {
+                        outline: none;
+                    }
+                }
+            }
+        }
+    }
+}
+
 /********************************************
  * CLASSES THAT MUST OVERRIDE ANYTHING ELSE *
  ********************************************/
 .hidden {
     display: none !important;
+}
+
+.draggable {
+    cursor: move;
+    cursor: grab;
+    cursor: -moz-grab;
+    cursor: -webkit-grab;
 }
