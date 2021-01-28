@@ -180,6 +180,9 @@ header .tool {
   text-align: center;
   margin: 10px 30px 10px 30px;
 }
+.aside-tools > div.class-buttons > :not(.chosen), .aside-tools > div.cost-buttons > :not(.chosen) {
+  opacity: 60%;
+}
 .aside-tools > div.card-showcase {
   width: 100%;
   height: 375px;
@@ -196,9 +199,6 @@ main {
 
 .class-button {
   width: 32px;
-}
-.class-button[data-toggled=false] {
-  opacity: 60%;
 }
 .class-button:focus, .class-button:active {
   outline: none;
@@ -222,9 +222,6 @@ main {
   font-family: "Belwe Std Bold", sans-serif;
   color: white;
   text-shadow: -1px -1px 0 black, 1px -1px 0 black, -1px 1px 0 black, 1px 1px 0 black;
-}
-.mana-crystal[data-toggled=false] {
-  opacity: 60%;
 }
 
 main {

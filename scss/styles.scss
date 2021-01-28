@@ -283,6 +283,10 @@ header {
         &.class-buttons, &.cost-buttons {
             text-align: center;
             margin: 10px 30px 10px 30px;
+
+            > :not(.chosen) {
+                opacity: 60%;
+            }
         }
     
         &.card-showcase {
@@ -304,10 +308,6 @@ main {
 .class-button {
     width: 32px;
 
-    &[data-toggled="false"] {
-        opacity: 60%;
-    }
-
     &:focus, &:active {
         outline: none;
         border: none;
@@ -326,10 +326,6 @@ main {
     line-height: 30px;
     @include background-size(cover);
     @include manafy();
-
-    &[data-toggled="false"] {
-        opacity: 60%;
-    }
 }
 
 main {

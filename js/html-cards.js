@@ -1,4 +1,5 @@
 const ALL_EXPANSIONS_OPTION = `<option value="all">(All)</option>`;
+const CARD_FLAG_DISPLAY = 0b111111;
 
 function buildExpMenu () {
     // check that 'expansions' contains some key that we always expect, such as "EXPERT1".
@@ -34,6 +35,19 @@ function displayExpansion () {
     list.empty();
 
     // consts used to assign data to card objects for filters.
+    const dataClass = {
+        DEMONHUNTER: 0,
+        DRUID: 1,
+        HUNTER: 2,
+        MAGE: 3,
+        PALADIN: 4,
+        PRIEST: 5,
+        ROGUE: 6,
+        SHAMAN: 7,
+        WARLOCK: 8,
+        WARRIOR: 9,
+        NEUTRAL: 10,
+    }
     const dataRarity = {
         FREE: 0,
         COMMON: 0,
@@ -49,7 +63,7 @@ function displayExpansion () {
         HERO: 3,
         undefined: 0
     }
-    const dataTribe = {
+    const dataRace = {
         undefined: 0,
         ALL: 1,
         BEAST: 2,
@@ -68,26 +82,26 @@ function displayExpansion () {
             gallery.append(`
                 <a href="card-data.html?card=${c["id"]}" target="_blank">
                     <img class="card-showcase" src="https://art.hearthstonejson.com/v1/render/latest/enUS/256x/${c["id"]}.png" alt="${c["name"]}"
-                    data-flags="${0b111111}"
+                    data-flags="${CARD_FLAG_DISPLAY}"
                     data-name="${c["name"]}"
-                    data-class="${c["cardClass"]}"
-                    data-cost="${c["cost"]}"
+                    data-cardclass="${dataClass[c["cardClass"]]}"
+                    data-cost="${c["cost"] > 10 ? 10 : c["cost"]}"
                     data-rarity="${dataRarity[c["rarity"]]}"
                     data-type="${dataType[c["type"]]}"
-                    data-race="${dataTribe[c["tribe"]]}"
+                    data-race="${dataRace[c["race"]]}"
                     />
                 </a>`);
             
             list.append(`
                 <a href="card-data.html?card=${c["id"]}" target="_blank">
                     <div class="card-token"
-                    data-flags="${0b111111}"
+                    data-flags="${CARD_FLAG_DISPLAY}"
                     data-name="${c["name"]}"
-                    data-class="${c["cardClass"]}"
-                    data-cost="${c["cost"]}"
+                    data-cardclass="${dataClass[c["cardClass"]]}"
+                    data-cost="${c["cost"] > 10 ? 10 : c["cost"]}"
                     data-rarity="${dataRarity[c["rarity"]]}"
                     data-type="${dataType[c["type"]]}"
-                    data-race="${dataTribe[c["tribe"]]}"
+                    data-race="${dataRace[c["race"]]}"
                     >
                         <div class="card-cost rarity-${c["rarity"].toLowerCase()}">${c["cost"]}</div>
                         <div class="card-name">
@@ -112,35 +126,7 @@ function displayExpansion () {
             `);
         }
     }
-    filterCardsByName();
-}
-
-function filterCardsByName () {
-    let query = $("#search-query").val();
-    
-    $(".card-showcase").each((_, obj) => {
-        let c = $(obj);
-        let cardName = c.data("name").toLowerCase();
-        
-        if (cardName.includes(query)) {
-            c.removeClass("hidden");
-        }
-        else {
-            c.addClass("hidden");
-        }
-    });
-
-    $(".card-token").each((_, obj) => {
-        let c = $(obj);
-        let cardName = c.data("name").toLowerCase();
-
-        if (cardName.includes(query)) {
-            c.removeClass("hidden");
-        }
-        else {
-            c.addClass("hidden");
-        }
-    });
+    _applyFilters();
 }
 
 let filterNames = {
@@ -149,9 +135,35 @@ let filterNames = {
     cost: 2,
     rarity: 3,
     type: 4,
-    tribe: 5
+    race: 5
 }
 let filters = {
+    cardClass: {
+        0: false,
+        1: false,
+        2: false,
+        3: false,
+        4: false,
+        5: false,
+        6: false,
+        7: false,
+        8: false,
+        9: false,
+        10: false
+    },
+    cost: {
+        0: false,
+        1: false,
+        2: false,
+        3: false,
+        4: false,
+        5: false,
+        6: false,
+        7: false,
+        8: false,
+        9: false,
+        10: false
+    },
     rarity: {
         0: false,
         1: false,
@@ -164,7 +176,7 @@ let filters = {
         2: false,
         3: false
     },
-    tribe: {
+    race: {
         0: false,
         1: false,
         2: false,
@@ -186,51 +198,28 @@ let filters = {
     }
 }
 
-function filterByRarity (obj, val) {
-    filterCardsByAttribute (obj, "rarity", val);
-}
+function filterByName () {
+    let query = $("#search-query").val();
 
-function filterByType (obj, val) {
-    filterCardsByAttribute (obj, "type", val);
-}
+    for (let c of $(".card-container-list > a")) __filterByName(c);
+    for (let c of $(".card-container-gallery > a")) __filterByName(c);
 
-function filterByTribe (obj, val) {
-    filterCardsByAttribute (obj, "tribe", val);
-}
-
-/**
- * Updates the flag on all the cards according to the filter given, and then displays the cards that have all flags.
- * @param {*} trigger The DOM object that called this method.
- * @param {*} filterName The name of the filter to use.
- * @param {*} value The value to filter.
- */
-function filterCardsByAttribute (trigger, filterName, value) {
-    let jTrigger = $(trigger);
-
-    filters[filterName][value] = !filters[filterName][value];
-
-    if (jTrigger.hasClass("chosen")) jTrigger.removeClass("chosen");
-    else jTrigger.addClass("chosen");
-
-    for (let c of $(".card-container-list > a")) __filterCard(c);
-    for (let c of $(".card-container-gallery > a")) __filterCard(c);
-    
-    function __filterCard (card) {
+    function __filterByName (card) {
         let jCard = $(card);
         let jChild = $(jCard.children()[0]);
-        let cardValue = jChild.data(filterName);
+        let cardName = jChild.data("name"); // lowercase because HTML attributes are case-insensitive.
         let cardFlags = jChild.attr("data-flags"); // MEGA-WARNING: Retrieving this with jChild.data("flags") will not work properly.
 
-        if (filters.isUnused(filterName) || filters[filterName][cardValue]) {
-            cardFlags |= 1 << filterNames[filterName];
+        if (cardName.toLowerCase().includes(query)) {
+            cardFlags |= 1 << filterNames["name"];
             jChild.attr("data-flags", cardFlags);
         }
         else {
-            cardFlags &= ~(1 << filterNames[filterName])
+            cardFlags &= ~(1 << filterNames["name"])
             jChild.attr("data-flags", cardFlags);
         }
 
-        if (cardFlags == 0b111111) {
+        if (cardFlags == CARD_FLAG_DISPLAY) {
             jCard.removeClass("hidden");
         }
         else {
@@ -239,175 +228,77 @@ function filterCardsByAttribute (trigger, filterName, value) {
     }
 }
 
-/*function filterRarity (rarity, obj) {
-    filterCardsByAttribute("rarity", {filter: rarityFilter}, rarity, obj);
+function filterByClass (obj, val) {
+    _filterCardsByAttribute(obj, "cardClass", val);
 }
 
-function filterCardsByAttribute (filterName, filterObj, value, trigger) {
+function filterByCost (obj, val) {
+    _filterCardsByAttribute(obj, "cost", val);
+}
+
+function filterByRarity (obj, val) {
+    _filterCardsByAttribute(obj, "rarity", val);
+}
+
+function filterByType (obj, val) {
+    _filterCardsByAttribute(obj, "type", val);
+}
+
+function filterByRace (obj, val) {
+    _filterCardsByAttribute(obj, "race", val);
+}
+
+/**
+ * Applies all the filters as they are chosen.
+ */
+function _applyFilters () {
+    filterByName();
+    for (let key in filters) {
+        for (let c of $(".card-container-list > a")) _filterCard(c, key);
+        for (let c of $(".card-container-gallery > a")) _filterCard(c, key);
+    }
+}
+
+/**
+ * Updates the flag on all the cards according to the filter given, and then displays the cards that have all flags.
+ * @param {*} trigger The DOM object that called this method.
+ * @param {string} filterName The name of the filter to use.
+ * @param {number} value The value to filter.
+ */
+function _filterCardsByAttribute (trigger, filterName, value) {
     let jTrigger = $(trigger);
 
-    filter ^= 1 << value;
+    filters[filterName][value] = !filters[filterName][value];
+
     if (jTrigger.hasClass("chosen")) jTrigger.removeClass("chosen");
     else jTrigger.addClass("chosen");
 
-    for (let c of $(".card-container-list > a")) __filterCard(c);
-    for (let c of $(".card-container-gallery > a")) __filterCard(c);
+    for (let c of $(".card-container-list > a")) _filterCard(c, filterName);
+    for (let c of $(".card-container-gallery > a")) _filterCard(c, filterName);
+}
     
-    function __filterCard (c) {
-        let card = $(c);
-        let cardValue = $(card.children()[0]).data(filterName);
-        if (!filter || (filter & (1 << cardValue))) {
-            card.removeClass("hidden");
-        }
-        else {
-            card.addClass("hidden");
-        }
-    }
-}*/
+function _filterCard (card, filterName) {
+    let jCard = $(card);
+    let jChild = $(jCard.children()[0]);
+    let cardValue = jChild.data(filterName.toLowerCase()); // lowercase because HTML attributes are case-insensitive.
+    let cardFlags = jChild.attr("data-flags"); // MEGA-WARNING: Retrieving this with jChild.data("flags") will not work properly.
 
-/*let classFilter = 0b00000000000; // this is clearly flexing
-const classIds = {
-    DEMONHUNTER: 0x1,
-    DRUID: 0x2,
-    HUNTER: 0x4,
-    MAGE: 0x8,
-    PALADIN: 0x10,
-    PRIEST: 0x20,
-    ROGUE: 0x40,
-    SHAMAN: 0x80,
-    WARLOCK: 0x100,
-    WARRIOR: 0x200,
-    NEUTRAL: 0x400,
-}
-
-function filterClass (classIndex) {
-    classFilter ^= 1 << classIndex;
-
-    let classButtons = $("#class-buttons > a > img");
-
-    for (let i = 0; i < Object.keys(classIds).length; i++) {
-        if ((classFilter & (1 << i)) != 0) {
-            $(classButtons[i]).attr("data-toggled", "true");
-        }
-        else {
-            $(classButtons[i]).attr("data-toggled", "false");
-        }
-    }
-
-    for (let c of $(".card-container-list > a")) {
-        __filterCard(c);
-    }
-
-    for (let c of $(".card-container-gallery > a")) {
-        __filterCard(c);
-    }
-
-    function __filterCard (c) {
-        let card = $(c);
-        let id = $(card.children()[0]).data("class");
-        if (!classFilter || (classFilter & classIds[id])) {
-            card.removeClass("hidden");
-        }
-        else {
-            card.addClass("hidden");
-        }
-    }
-}
-
-let manaFilter = 0b00000000000;
-
-function filterMana (mana) {
-    manaFilter ^= 1 << mana;
-
-    let costButtons = $("#cost-buttons > a > div");
-
-    for (let i = 0; i < 11; i++) {
-        if ((manaFilter & (1 << i)) != 0) {
-            $(costButtons[i]).attr("data-toggled", "true");
-        }
-        else {
-            $(costButtons[i]).attr("data-toggled", "false");
-        }
-    }
-
-    for (let c of $(".card-container-list > a")) {
-        __filterCard(c);
-    }
-
-    for (let c of $(".card-container-gallery > a")) {
-        __filterCard(c);
-    }
-    function __filterCard (c) {
-        let card = $(c);
-        let cost = $(card.children()[0]).data("cost");
-        if (cost > 10) cost = 10; // cards with cost higher than 10 are grouped into the "10+" filter.
-        if (!manaFilter || (manaFilter & (1 << cost))) {
-            card.removeClass("hidden");
-        }
-        else {
-            card.addClass("hidden");
-        }
-    }
-}
-
-let rarityFilter = 0b0000;
-
-function filterRarity (rarity, obj) {
-    let chosenA = $(obj);
-
-    rarityFilter ^= 1 << rarity;
-
-    if (chosenA.hasClass("chosen")) {
-        chosenA.removeClass("chosen");
+    if (filters.isUnused(filterName) || filters[filterName][cardValue]) {
+        cardFlags |= 1 << filterNames[filterName];
+        jChild.attr("data-flags", cardFlags);
     }
     else {
-        chosenA.addClass("chosen");
+        cardFlags &= ~(1 << filterNames[filterName])
+        jChild.attr("data-flags", cardFlags);
     }
 
-    for (let c of $(".card-container-list > a")) {
-        __filterCard(c);
+    if (cardFlags == CARD_FLAG_DISPLAY) {
+        jCard.removeClass("hidden");
     }
-
-    for (let c of $(".card-container-gallery > a")) {
-        __filterCard(c);
-    }
-    function __filterCard (c) {
-        let card = $(c);
-        let rarity = $(card.children()[0]).data("rarity");
-        if (!rarityFilter || (rarityFilter & (1 << rarity))) {
-            card.removeClass("hidden");
-        }
-        else {
-            card.addClass("hidden");
-        }
+    else {
+        jCard.addClass("hidden");
     }
 }
-
-function filterRarity (rarity, obj) {
-    filterCardsByAttribute("rarity", {filter: rarityFilter}, rarity, obj);
-}
-
-function filterCardsByAttribute (filterName, filterObj, value, trigger) {
-    let jTrigger = $(trigger);
-
-    filter ^= 1 << value;
-    if (jTrigger.hasClass("chosen")) jTrigger.removeClass("chosen");
-    else jTrigger.addClass("chosen");
-
-    for (let c of $(".card-container-list > a")) __filterCard(c);
-    for (let c of $(".card-container-gallery > a")) __filterCard(c);
-    
-    function __filterCard (c) {
-        let card = $(c);
-        let cardValue = $(card.children()[0]).data(filterName);
-        if (!filter || (filter & (1 << cardValue))) {
-            card.removeClass("hidden");
-        }
-        else {
-            card.addClass("hidden");
-        }
-    }
-}*/
 
 function _buildMenuFromExp (expansions) {
     let expMenu = $("#exp-menu");
