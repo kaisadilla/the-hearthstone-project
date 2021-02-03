@@ -69,14 +69,17 @@
         <span class="option" onclick="filterByRace(this, 8)">Pirate</span>
         <span class="option" onclick="filterByRace(this, 9)">Totem</span>
     </aside>
-    <main class="two-asides" ondrop="drop(event)" ondragover="allowDrop(event)">
+    <main class="two-asides">
+        <div class="hidden" id="deck-card-drop-area" ondrop="dropDeckCard(event)" ondragover="allowDrop(event)">
+            <span>Drop card here to remove it from the deck.</span>
+        </div>
         <div class="card-filters">
             <div class="search-card">
                 <input type="text" id="search-query" placeholder="Search: Arcane Intellect…" oninput="filterByName()"/>
                 <span class="material-icons">search</span>
             </div>
             <div class="filter-exp">
-                <select id="exp-menu" onchange="displayExpansion()">
+                <select id="exp-menu" onchange="displayExpansionDraggable()">
                     <option selected value> -- Choose an expansion -- </option>
                 </select>
             </div>
@@ -87,7 +90,6 @@
         </div>
     </main>
     
-   <!--<span id="required" draggable="true" ondragstart="dragRequired(event)" ondrop="dropField(event)" ondragover="allowDrop(event)">OBLIGATORIO</span>-->
     <aside class="deck-view">
         <div class="deck-hero">
             <div class="deck-hero-frame">
@@ -97,7 +99,7 @@
                 </div>
             </div>
         </div>
-        <div class="deck-cards">
+        <div class="deck-cards" id="deck-cards" ondrop="dropGalleryCard(event)" ondragover="allowDrop(event)">
             <div class="card-token-reduced draggable" data-id="INT_001" draggable="true" ondragstart="dragDeckCard(event)">
                 <div class="card-cost rarity-rare">5</div>
                 <div class="card-name">
@@ -114,7 +116,6 @@
                     <span class="tile-fade-out"></span>
                     <span class="caption">Thing from Below</span>
                 </div>
-                <div class="card-amount">2</div>
             </div>
         </div>
     </aside>
@@ -128,6 +129,8 @@
     <script>
         loadData();
         buildExpMenu();
+
+        doStuff();
     </script>
 </body>
 </html>

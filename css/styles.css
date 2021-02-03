@@ -425,12 +425,6 @@ main {
   text-overflow: ellipsis;
 }
 
-.deck-cards {
-  width: 235px;
-  margin: 0 auto;
-  margin-top: 10px;
-}
-
 .card-token-reduced {
   display: flex;
   height: 33px;
@@ -557,6 +551,7 @@ main {
   overflow-x: hidden;
   height: calc(100% - 50px);
   width: 300px;
+  scrollbar-width: thin;
 }
 .deck-view > .deck-hero {
   margin-top: 1px;
@@ -597,6 +592,40 @@ main {
 }
 .deck-view > .deck-hero > .deck-hero-frame > .deck-name > input:focus {
   outline: none;
+}
+.deck-view > .deck-cards {
+  width: 235px;
+  margin-left: 33px;
+  margin-top: 10px;
+  min-height: calc(100vh - 200px);
+  transition: background-color 1.2s ease-out;
+}
+.deck-view > .deck-cards.display-border {
+  outline: 2px dashed #492609;
+}
+.deck-view > .deck-cards.display-warning {
+  outline: 2px solid red;
+  background-color: red;
+  transition: background-color 0s;
+}
+
+#deck-card-drop-area {
+  position: fixed;
+  margin-top: 50px;
+  margin-right: 300px;
+  z-index: 10;
+  min-height: calc(100vh - 150px);
+  width: calc(100% - 650px);
+  background: #facd5f;
+  text-align: center;
+  outline: 2px dashed #492609;
+}
+#deck-card-drop-area > span {
+  color: #492609;
+  font-weight: 600;
+  font-size: 28pt;
+  display: block;
+  margin-top: calc(((100vh - 150px) / 2) - 28pt);
 }
 
 /********************************************

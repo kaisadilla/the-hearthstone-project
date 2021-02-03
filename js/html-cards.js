@@ -80,7 +80,7 @@ function displayExpansion () {
 
         if ((chosenExp === "all" || c["set"] === chosenExp) && c["text"] !== undefined) {
             gallery.append(`
-                <a href="card-data.html?card=${c["id"]}" target="_blank">
+                <a class="gallery-card-item" href="card-data.html?card=${c["id"]}" target="_blank" data-id="${c["id"]}">
                     <img class="card-showcase" src="https://art.hearthstonejson.com/v1/render/latest/enUS/256x/${c["id"]}.png" alt="${c["name"]}"
                     data-flags="${CARD_FLAG_DISPLAY}"
                     data-name="${c["name"]}"
@@ -93,7 +93,7 @@ function displayExpansion () {
                 </a>`);
             
             list.append(`
-                <a href="card-data.html?card=${c["id"]}" target="_blank">
+                <a class="list-card-item" href="card-data.html?card=${c["id"]}" target="_blank">
                     <div class="card-token"
                     data-flags="${CARD_FLAG_DISPLAY}"
                     data-name="${c["name"]}"

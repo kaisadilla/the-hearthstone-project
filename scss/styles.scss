@@ -541,12 +541,6 @@ main {
     }
 }
 
-.deck-cards {
-    width: 235px;
-    margin: 0 auto;
-    margin-top: 10px;
-}
-
 .card-token-reduced {
     $height: 32px; // does not include borders.
     $cost-amount-width: 32px;
@@ -682,6 +676,7 @@ main {
     overflow-x: hidden;
     height: calc(100% - 50px);
     width: 300px;
+    scrollbar-width: thin;
 
     > .deck-hero {
         $width: 100%;
@@ -731,6 +726,47 @@ main {
                 }
             }
         }
+    }
+
+    > .deck-cards {
+        width: 235px;
+        margin-left: 33px;
+        margin-top: 10px;
+        min-height: calc(100vh - 200px);
+        transition: background-color 1.2s ease-out;
+
+        &.display-border {
+            outline: 2px dashed $primary-color;
+        }
+
+        &.display-warning {
+            outline: 2px solid red;
+            background-color: red;
+            transition: background-color 0s;
+        }
+    }
+    
+}
+
+#deck-card-drop-area {
+    position: fixed;
+    margin-top: 50px;
+    margin-right: 300px;
+    z-index: 10;
+
+    min-height: calc(100vh - 150px);
+    width: calc(100% - 650px);
+
+    background: $secondary-color-light1;
+    text-align: center;
+    outline: 2px dashed $primary-color;
+
+    > span {
+        color: $primary-color;
+        font-weight: $semibold;
+        font-size: 28pt;
+        display: block;
+        margin-top: calc(((100vh - 150px) / 2) - 28pt);
     }
 }
 
