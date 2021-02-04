@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My decks – the Hearthstone project</title>
+    <!-- styles -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="css/styles.css" rel="stylesheet">
+</head>
+<body>
+    <header>
+        <span class="proj-title">the Hearthstone project</span>
+        <span class="tool">My decks</span>
+        <span class="tool">My cards</span>
+    </header>
+    <aside class="aside-tools">
+        <span class="title">Filters</span>
+        <span class="section">Classes</span> <!-- show transparent class icon for disabled, full icon for enabled -->
+        <div class="class-buttons" id="class-buttons">
+            <a href="javascript:void(0)" onclick="filterByClass(this, 0)"><img class="class-button" src="img/class-demonhunter.png" alt="demonhunter" data-toggled="false" /></a>
+            <a href="javascript:void(0)" onclick="filterByClass(this, 1)"><img class="class-button" src="img/class-druid.png" alt="druid" data-toggled="false" /></a>
+            <a href="javascript:void(0)" onclick="filterByClass(this, 2)"><img class="class-button" src="img/class-hunter.png" alt="hunter" data-toggled="false" /></a>
+            <a href="javascript:void(0)" onclick="filterByClass(this, 3)"><img class="class-button" src="img/class-mage.png" alt="mage" data-toggled="false" /></a>
+            <a href="javascript:void(0)" onclick="filterByClass(this, 4)"><img class="class-button" src="img/class-paladin.png" alt="paladin" data-toggled="false" /></a>
+            <a href="javascript:void(0)" onclick="filterByClass(this, 5)"><img class="class-button" src="img/class-priest.png" alt="priest" data-toggled="false" /></a>
+            <a href="javascript:void(0)" onclick="filterByClass(this, 6)"><img class="class-button" src="img/class-rogue.png" alt="rogue" data-toggled="false" /></a>
+            <a href="javascript:void(0)" onclick="filterByClass(this, 7)"><img class="class-button" src="img/class-shaman.png" alt="shaman" data-toggled="false" /></a>
+            <a href="javascript:void(0)" onclick="filterByClass(this, 8)"><img class="class-button" src="img/class-warlock.png" alt="warlock" data-toggled="false" /></a>
+            <a href="javascript:void(0)" onclick="filterByClass(this, 9)"><img class="class-button" src="img/class-warrior.png" alt="warrior" data-toggled="false" /></a>
+            <a href="javascript:void(0)" onclick="filterByClass(this, 10)"><img class="class-button" src="img/class-neutral.png" alt="neutral" data-toggled="false" /></a>
+        </div>
+    </aside>
+    <main>
+        <div class="deck-list">
+            <div class="deck-token">
+                <a class="deck-name" href="#">
+                    <img class="tile" src="https://art.hearthstonejson.com/v1/512x/HERO_08.jpg" />
+                    <span class="tile-fade-out DEMONHUNTER"></span>
+                    <span class="caption">Sandwich Mage</span>
+                </a>
+                <a class="deck-remove" href="#">
+                    <span class="material-icons">clear</span>
+                </a>
+            </div>
+        </div>
+    </main>
+</body>
+</html>

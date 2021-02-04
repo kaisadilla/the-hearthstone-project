@@ -628,6 +628,93 @@ main {
   margin-top: calc(((100vh - 150px) / 2) - 28pt);
 }
 
+.deck-list {
+  max-width: 800px;
+}
+.deck-list .deck-token {
+  border: 5px solid #492609;
+  outline: 1px solid #1e0000;
+  width: calc(100% - 5px - 6px);
+  max-width: 800px;
+  height: 60px;
+  display: flex;
+}
+.deck-list .deck-token .deck-name {
+  width: calc(100% - 5px - 1px);
+  max-width: 800px;
+  height: 60px;
+}
+.deck-list .deck-token .deck-name .tile {
+  display: block;
+  margin-right: 0;
+  float: right;
+  height: 60px;
+  width: 300px;
+  max-width: 800px;
+  object-fit: cover;
+  object-position: 0 15%;
+  border-right: 5px solid #492609;
+}
+.deck-list .deck-token .deck-name .tile-fade-out {
+  position: absolute;
+  width: calc(100% - 350px - 5px - 1px);
+  max-width: 800px;
+  height: 60px;
+  background: linear-gradient(120deg, #333, #333 55%, transparent 70%, transparent);
+}
+.deck-list .deck-token .deck-name .tile-fade-out.DEMONHUNTER {
+  background: linear-gradient(105deg, #25896e, #25896e 55%, transparent 70%, transparent);
+}
+.deck-list .deck-token .deck-name .tile-fade-out.DRUID {
+  background: linear-gradient(105deg, #573109, #573109 55%, transparent 70%, transparent);
+}
+.deck-list .deck-token .deck-name .tile-fade-out.HUNTER {
+  background: linear-gradient(105deg, #1d7a00, #1d7a00 55%, transparent 70%, transparent);
+}
+.deck-list .deck-token .deck-name .tile-fade-out.MAGE {
+  background: linear-gradient(105deg, #0c83af, #0c83af 55%, transparent 70%, transparent);
+}
+.deck-list .deck-token .deck-name .tile-fade-out.PALADIN {
+  background: linear-gradient(105deg, #b00550, #b00550 55%, transparent 70%, transparent);
+}
+.deck-list .deck-token .deck-name .tile-fade-out.PRIEST {
+  background: linear-gradient(105deg, #b0b0b0, #b0b0b0 55%, transparent 70%, transparent);
+}
+.deck-list .deck-token .deck-name .tile-fade-out.ROGUE {
+  background: linear-gradient(105deg, #f2d800, #f2d800 55%, transparent 70%, transparent);
+}
+.deck-list .deck-token .deck-name .tile-fade-out.SHAMAN {
+  background: linear-gradient(105deg, #00386e, #00386e 55%, transparent 70%, transparent);
+}
+.deck-list .deck-token .deck-name .tile-fade-out.WARLOCK {
+  background: linear-gradient(105deg, #5318a3, #5318a3 55%, transparent 70%, transparent);
+}
+.deck-list .deck-token .deck-name .tile-fade-out.WARRIOR {
+  background: linear-gradient(105deg, #8f0000, #8f0000 55%, transparent 70%, transparent);
+}
+.deck-list .deck-token .deck-name .caption {
+  display: block;
+  position: absolute;
+  height: inherit;
+  width: auto;
+  font-family: "Belwe Std Bold", sans-serif;
+  color: white;
+  text-shadow: -1px -1px 0 black, 1px -1px 0 black, -1px 1px 0 black, 1px 1px 0 black;
+  font-size: 24pt;
+  line-height: 59px;
+  padding-left: 35px;
+}
+.deck-list .deck-token .deck-remove {
+  background-color: #ca352a;
+  width: 60px;
+  height: 60px;
+}
+.deck-list .deck-token .deck-remove span {
+  padding: 8px;
+  font-size: 32pt;
+  color: #690801;
+}
+
 /********************************************
  * CLASSES THAT MUST OVERRIDE ANYTHING ELSE *
  ********************************************/
