@@ -304,6 +304,7 @@ header {
 main {
     margin-left: 300px;
     margin-top: 50px;
+    padding: 10px;
     
     &.two-asides {
         margin-right: 300px;
@@ -331,10 +332,6 @@ main {
     line-height: 30px;
     @include background-size(cover);
     @include manafy();
-}
-
-main {
-    padding: 10px;
 }
 
 .search-card {

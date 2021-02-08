@@ -45,5 +45,16 @@ function _fillCardData () {
         $("#card-health").addClass("hidden");
     }
 
+    if (card["type"] == "MINION") {
+        $("#sound-play").attr("src", `https://hearthstonesounds.s3.amazonaws.com/${card["id"]}_P.wav`);
+        $("#sound-attack").attr("src", `https://hearthstonesounds.s3.amazonaws.com/${card["id"]}_A.wav`);
+        $("#sound-death").attr("src", `https://hearthstonesounds.s3.amazonaws.com/${card["id"]}_D.wav`);
+    }
+    else {
+        $("#sound-play").addClass("hidden");
+        $("#sound-attack").addClass("hidden");
+        $("#sound-death").addClass("hidden");
+    }
+
     // attack / health
 }
